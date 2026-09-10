@@ -1,1072 +1,752 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jabilli Cloud Kitchen | Homely Food, Made with Love</title>
-    <meta name="description" content="Jabilli Cloud Kitchen - Delicious homely food delivered to your doorstep. Located behind Kamineni Hospital, LB Nagar. Free delivery within 3 KM. Order now: 7569355400">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --primary: #C41E3A;
-            --primary-dark: #8B0000;
-            --secondary: #D4AF37;
-            --accent: #FF6B35;
-            --dark: #1A1A2E;
-            --dark-brown: #2C1810;
-            --cream: #FFF8E7;
-            --warm-bg: #FDF6E3;
-            --green: #2E7D32;
-            --green-light: #4CAF50;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--cream);
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-
-        /* ===== NAVBAR ===== */
-        .navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 999;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 65px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .nav-logo {
-            width: 42px; height: 42px;
-            background: var(--secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            font-weight: 900;
-            color: var(--primary-dark);
-        }
-
-        .nav-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: white;
-        }
-
-        .nav-name span { color: var(--secondary); }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover { color: var(--secondary); }
-
-        .nav-order-btn {
-            background: var(--primary);
-            color: white !important;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-weight: 600 !important;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        .nav-order-btn:hover {
-            background: var(--accent) !important;
-            transform: scale(1.05);
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 5px;
-        }
-
-        .nav-toggle span {
-            width: 25px; height: 2px;
-            background: white;
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            margin-top: 65px;
-            min-height: 520px;
-            background: linear-gradient(135deg, var(--dark-brown) 0%, #4A1A0A 40%, var(--primary-dark) 100%);
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at 10% 80%, rgba(212,175,55,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 90% 20%, rgba(196,30,58,0.1) 0%, transparent 50%);
-        }
-
-        /* Decorative food circles */
-        .hero-decor {
-            position: absolute;
-            border-radius: 50%;
-            border: 2px solid rgba(212,175,55,0.1);
-        }
-
-        .hero-decor-1 { width: 300px; height: 300px; top: -80px; right: -60px; }
-        .hero-decor-2 { width: 200px; height: 200px; bottom: -50px; left: -40px; }
-        .hero-decor-3 { width: 150px; height: 150px; top: 50%; right: 10%; border-color: rgba(255,255,255,0.05); }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            width: 100%;
-        }
-
-        .hero-left { color: white; }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(212,175,55,0.2);
-            border: 1px solid rgba(212,175,55,0.4);
-            color: var(--secondary);
-            padding: 6px 18px;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            line-height: 1.2;
-            margin-bottom: 5px;
-        }
-
-        .hero h1 span { color: var(--secondary); }
-
-        .hero-tagline {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-
-        .hero-desc {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.7;
-            margin-bottom: 25px;
-            max-width: 500px;
-        }
-
-        .hero-badges {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 25px;
-        }
-
-        .hero-badge-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.15);
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            color: white;
-        }
-
-        .hero-badge-item .icon {
-            font-size: 1.1rem;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
-        }
-
-        .btn-outline {
-            border: 2px solid rgba(255,255,255,0.4);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-outline:hover {
-            border-color: var(--secondary);
-            color: var(--secondary);
-        }
-
-        .hero-right {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-food-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .food-card {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            color: white;
-            transition: all 0.3s;
-            backdrop-filter: blur(5px);
-        }
-
-        .food-card:hover {
-            background: rgba(212,175,55,0.15);
-            border-color: rgba(212,175,55,0.3);
-            transform: translateY(-5px);
-        }
-
-        .food-card .food-emoji { font-size: 2.2rem; margin-bottom: 8px; }
-        .food-card .food-name { font-size: 0.85rem; font-weight: 500; }
-        .food-card .food-price { color: var(--secondary); font-weight: 700; font-size: 1rem; margin-top: 4px; }
-
-        /* ===== SPECIAL STRIP ===== */
-        .special-strip {
-            background: var(--secondary);
-            padding: 12px 20px;
-            text-align: center;
-            font-weight: 700;
-            color: var(--dark-brown);
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-        }
-
-        .special-strip span { color: var(--primary-dark); }
-
-        /* ===== SECTION STYLES ===== */
-        section { padding: 70px 20px; }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-header .overline {
-            display: inline-block;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-            color: var(--dark-brown);
-            margin-bottom: 8px;
-        }
-
-        .section-header p {
-            color: #777;
-            font-size: 1rem;
-        }
-
-        .section-header .line {
-            width: 60px; height: 3px;
-            background: var(--secondary);
-            margin: 12px auto 0;
-            border-radius: 2px;
-        }
-
-        /* ===== MENU ===== */
-        .menu { background: var(--dark-brown); color: white; }
-
-        .menu .section-header .overline { color: var(--secondary); }
-        .menu .section-header h2 { color: white; }
-        .menu .section-header p { color: rgba(255,255,255,0.6); }
-
-        .menu-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .menu-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(212,175,55,0.15);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .menu-card:hover {
-            border-color: rgba(212,175,55,0.4);
-            transform: translateY(-3px);
-        }
-
-        .menu-card-header {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            padding: 14px 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-        }
-
-        .menu-card-items { padding: 5px 0; }
-
-        .menu-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            transition: background 0.2s;
-        }
-
-        .menu-row:last-child { border-bottom: none; }
-        .menu-row:hover { background: rgba(212,175,55,0.08); }
-
-        .menu-row .name {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.85);
-        }
-
-        .menu-row .dots {
-            flex: 1;
-            border-bottom: 1px dotted rgba(255,255,255,0.15);
-            margin: 0 10px;
-            min-width: 20px;
-        }
-
-        .menu-row .price {
-            color: var(--secondary);
-            font-weight: 700;
-            font-size: 0.95rem;
-            white-space: nowrap;
-        }
-
-        /* ===== FEATURES ===== */
-        .features { background: white; }
-
-        .features-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
-
-        .feature-box {
-            text-align: center;
-            padding: 30px 20px;
-            border-radius: 16px;
-            background: var(--cream);
-            border: 1px solid #f0e6d0;
-            transition: all 0.3s;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            border-color: var(--secondary);
-        }
-
-        .feature-box .icon {
-            width: 60px; height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            margin: 0 auto 15px;
-            box-shadow: 0 8px 20px rgba(196, 30, 58, 0.25);
-        }
-
-        .feature-box h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: var(--dark-brown);
-            margin-bottom: 8px;
-        }
-
-        .feature-box p {
-            font-size: 0.85rem;
-            color: #888;
-            line-height: 1.5;
-        }
-
-        /* ===== PACKAGES ===== */
-        .packages { background: var(--cream); }
-
-        .packages-grid {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-
-        .pkg-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-            border: 2px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .pkg-card:hover {
-            border-color: var(--secondary);
-            transform: translateY(-5px);
-        }
-
-        .pkg-card-top {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            padding: 25px;
-            text-align: center;
-            color: white;
-        }
-
-        .pkg-card-top.gold {
-            background: linear-gradient(135deg, var(--secondary), #B8860B);
-            color: var(--dark-brown);
-        }
-
-        .pkg-card-top .pkg-icon { font-size: 2.5rem; margin-bottom: 8px; }
-        .pkg-card-top h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; }
-        .pkg-card-top p { font-size: 0.9rem; opacity: 0.9; }
-
-        .pkg-card-body { padding: 25px; }
-
-        .pkg-card-body ul { list-style: none; margin-bottom: 20px; }
-
-        .pkg-card-body li {
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.9rem;
-            color: #555;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .pkg-card-body li::before {
-            content: '✓';
-            color: var(--green);
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-
-        .pkg-btn {
-            display: block;
-            text-align: center;
-            padding: 12px;
-            background: var(--primary);
-            color: white;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .pkg-btn:hover { background: var(--primary-dark); }
-        .pkg-btn.gold { background: var(--secondary); color: var(--dark-brown); }
-        .pkg-btn.gold:hover { background: #B8860B; }
-
-        /* ===== AUDIENCE ===== */
-        .audience { background: white; }
-
-        .audience-grid {
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .aud-item {
-            text-align: center;
-            padding: 25px 20px;
-            border-radius: 14px;
-            background: var(--cream);
-            border: 1px solid #f0e6d0;
-            width: 140px;
-            transition: all 0.3s;
-        }
-
-        .aud-item:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            transform: scale(1.08);
-        }
-
-        .aud-item .aud-icon { font-size: 2rem; margin-bottom: 8px; }
-        .aud-item h4 { font-size: 0.85rem; font-weight: 600; }
-
-        /* ===== ORDER ===== */
-        .order {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--accent));
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .order::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.1) 0%, transparent 60%);
-        }
-
-        .order-content { position: relative; z-index: 1; }
-
-        .order h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-            margin-bottom: 10px;
-        }
-
-        .order .subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 20px; }
-
-        .order-phone {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 25px;
-        }
-
-        .order-phone a { color: inherit; text-decoration: none; }
-
-        .order-btns {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .order-btn {
-            padding: 14px 35px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-        }
-
-        .order-btn:hover { transform: translateY(-3px); }
-
-        .swiggy { background: #FC8019; color: white; box-shadow: 0 5px 20px rgba(252,128,25,0.4); }
-        .zomato { background: #E23744; color: white; box-shadow: 0 5px 20px rgba(226,55,68,0.4); }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--dark);
-            color: rgba(255,255,255,0.7);
-            padding: 40px 20px 25px;
-            text-align: center;
-        }
-
-        .footer-brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--secondary);
-            margin-bottom: 8px;
-        }
-
-        .footer-tagline {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.1rem;
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .footer-info {
-            font-size: 0.9rem;
-            line-height: 2;
-        }
-
-        .footer-info a { color: var(--secondary); text-decoration: none; }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .footer-links a {
-            width: 42px; height: 42px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-
-        .footer-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .footer-copy {
-            margin-top: 20px;
-            font-size: 0.8rem;
-            opacity: 0.5;
-        }
-
-        /* ===== FLOATS ===== */
-        .float-btn {
-            position: fixed;
-            bottom: 25px;
-            width: 58px; height: 58px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.6rem;
-            text-decoration: none;
-            z-index: 999;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-            transition: all 0.3s;
-        }
-
-        .float-btn:hover { transform: scale(1.1); }
-
-        .float-wa { right: 25px; background: #25D366; }
-        .float-call { left: 25px; background: var(--primary); }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
-            .hero-content { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; }
-            .hero-desc { margin: 0 auto 25px; }
-            .hero-badges { justify-content: center; }
-            .hero-cta { justify-content: center; }
-            .hero-right { display: none; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .packages-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .nav-toggle { display: flex; }
-        }
-
-        @media (max-width: 600px) {
-            .features-grid { grid-template-columns: 1fr; }
-            .menu-grid { grid-template-columns: 1fr; }
-            .aud-item { width: 120px; }
-        }
-
-        /* ===== FADE IN ===== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(25px);
-            transition: all 0.5s ease;
-        }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jabilli Cloud Kitchen — Homely Food, Made with Love ❤️ | LB Nagar, Hyderabad</title>
+<meta name="description" content="Jabilli Cloud Kitchen — delicious, affordable homely food at Prashanth Nagar, Mansoorabad, just behind Kamineni Hospital, LB Nagar, Hyderabad. FREE delivery within 3 KM. Weekly & monthly packages. Call 7569355400.">
+<meta name="theme-color" content="#2e070c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍛</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Outfit:wght@300;400;500;600;700&family=Baloo+Tammudu+2:wght@500;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Jabilli Cloud Kitchen",
+  "description": "Homely veg & non-veg food made with love. Free delivery within 3 KM of LB Nagar.",
+  "telephone": "+917569355400",
+  "priceRange": "₹30 - ₹229",
+  "servesCuisine": ["Indian", "Telangana", "South Indian", "Biryani"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "H No 3-8-497/2, Plot No 28, Road No 3, Prashanth Nagar, Mansoorabad, LB Nagar",
+    "addressLocality": "Hyderabad",
+    "addressRegion": "Telangana",
+    "postalCode": "500074",
+    "addressCountry": "IN"
+  },
+  "hasMap": "https://maps.app.goo.gl/pNTVFt41TXn4LFPd9",
+  "sameAs": [
+    "https://www.swiggy.com/menu/1398265",
+    "https://zomato.onelink.me/xqzv/e3gg4u5e"
+  ]
+}
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --maroon:#4a0d13; --maroon2:#6b1520; --deep:#2e070c; --deep2:#260609;
+  --gold:#e9b45b; --gold2:#c9922f; --goldsoft:#f3d193;
+  --cream:#fff6e9; --ink:#2b1512; --inksoft:#6f5a49; --line:#ecd9b8;
+  --shadow:0 18px 40px -18px rgba(74,13,19,.35);
+  --swiggy:#fc8019; --zomato:#e23744;
+}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+section{scroll-margin-top:78px}
+.wrap{max-width:1150px;margin:auto;padding:0 22px}
+.section{padding:86px 0}
+.te{font-family:'Baloo Tammudu 2',sans-serif;line-height:1.9}
+.si{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sfill{fill:currentColor;stroke:none}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+.grain{position:relative;isolation:isolate}
+.grain::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;mix-blend-mode:overlay;opacity:.06;
+ background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="160" height="160" filter="url(%23n)"/></svg>')}
+
+header{position:fixed;inset:0 0 auto;z-index:80;transition:.3s;background:rgba(46,7,12,.72);backdrop-filter:blur(12px);border-bottom:1px solid rgba(233,180,91,.16)}
+header.sc{background:rgba(38,6,9,.94);box-shadow:0 10px 30px -12px rgba(0,0,0,.5)}
+.nav{max-width:1150px;margin:auto;padding:0 22px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-badge{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f6d78c,#d69a2f 72%);display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.35);flex:none}
+.brand-badge svg{width:22px;height:22px;color:var(--maroon)}
+.brand-name{font-family:'Fraunces',serif;font-weight:700;color:var(--goldsoft);font-size:1.22rem;line-height:1.1}
+.brand-sub{font-size:.58rem;letter-spacing:.34em;color:rgba(255,246,233,.7);text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{color:rgba(255,246,233,.85);text-decoration:none;font-size:.92rem;font-weight:500;transition:.2s}
+.nav-links a:hover{color:var(--goldsoft)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.95rem 1.7rem;border-radius:999px;font-weight:700;font-size:.95rem;letter-spacing:.02em;transition:.25s;border:1.5px solid transparent;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn svg{width:18px;height:18px}
+.btn-gold{background:linear-gradient(135deg,#f3c96b,#d99a2b);color:#3a1508;box-shadow:0 12px 26px -10px rgba(232,176,75,.6)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 32px -10px rgba(232,176,75,.65)}
+.btn-ghost{border-color:rgba(255,246,233,.35);color:var(--cream)}
+.btn-ghost:hover{background:rgba(255,246,233,.09)}
+.btn-sm{padding:.6rem 1.25rem;font-size:.85rem}
+.burger{display:none;background:none;border:0;cursor:pointer;width:40px;height:40px}
+.burger span{display:block;width:22px;height:2px;background:var(--goldsoft);margin:5px auto;transition:.3s;border-radius:2px}
+@media(max-width:900px){
+ .burger{display:block}
+ .nav-links{position:fixed;top:68px;left:0;right:0;flex-direction:column;align-items:flex-start;background:rgba(38,6,9,.97);padding:20px 24px 26px;gap:16px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:.25s;border-bottom:1px solid rgba(233,180,91,.2)}
+ body.nav-open .nav-links{opacity:1;transform:none;pointer-events:auto}
+ body.nav-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+ body.nav-open .burger span:nth-child(2){opacity:0}
+ body.nav-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+}
+
+.hero{position:relative;padding:150px 0 96px;color:var(--cream);overflow:hidden;
+ background:
+  radial-gradient(1100px 560px at 88% -10%,rgba(233,180,91,.16),transparent 60%),
+  radial-gradient(800px 460px at -10% 110%,rgba(233,180,91,.09),transparent 60%),
+  linear-gradient(160deg,#4a0d13,#2e070c 55%,#3c0a10)}
+.hero::after{content:"జబిల్లి";position:absolute;right:-2%;top:2%;font-family:'Baloo Tammudu 2';font-weight:700;font-size:clamp(9rem,22vw,19rem);color:transparent;-webkit-text-stroke:2px rgba(233,180,91,.09);line-height:1;pointer-events:none;user-select:none}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:44px;align-items:center;position:relative;z-index:2}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr}}
+.chip-loc{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(233,180,91,.4);background:rgba(233,180,91,.1);padding:8px 16px;border-radius:999px;font-size:.78rem;letter-spacing:.05em;color:var(--goldsoft);font-weight:600}
+.chip-loc svg{width:14px;height:14px}
+.hero h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.5rem,6vw,4.2rem);line-height:1.07;margin:20px 0 8px}
+.hero h1 em{font-style:italic;color:var(--goldsoft);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 Q 20 2 40 7 T 78 7 T 118 6' fill='none' stroke='%23e9b45b' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") bottom left/100% .32em no-repeat;padding-bottom:.16em}
+.hero .hero-te{font-size:1.02rem;color:rgba(255,246,233,.9)}
+.hero .lead{max-width:560px;color:rgba(255,246,233,.78);line-height:1.75;margin:16px 0 4px;font-size:.98rem}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+.ota-line{margin-top:14px;font-size:.88rem;color:rgba(255,246,233,.75)}
+.ota-line a{color:var(--goldsoft);font-weight:700;text-decoration:none;border-bottom:1px dashed rgba(233,180,91,.5)}
+.ota-line a:hover{border-bottom-style:solid}
+.hstats{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hstat{display:flex;align-items:center;gap:10px;background:rgba(255,246,233,.07);border:1px solid rgba(233,180,91,.25);padding:10px 16px;border-radius:14px;font-size:.84rem;color:rgba(255,246,233,.85)}
+.hstat b{color:var(--goldsoft)}
+.hstat .e{font-size:1.15rem}
+
+.hero-art{position:relative;display:grid;place-items:center;min-height:470px}
+.moon{position:absolute;top:0;left:10%;color:var(--gold);animation:float 6s ease-in-out infinite}
+.moon svg{width:56px;height:56px}
+.tw{animation:tw 3s ease-in-out infinite}.tw2{animation-delay:1.4s}
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}}
+.plate-wrap{position:relative;width:min(330px,78%);aspect-ratio:1}
+.ring{position:absolute;inset:-18px;border:1.5px dashed rgba(233,180,91,.5);border-radius:50%;animation:spin 44s linear infinite}
+.plate{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 42%,#fff2d9,#f3d9a4 55%,#caa060 130%);box-shadow:inset 0 -14px 30px rgba(120,70,10,.25),0 30px 60px -20px rgba(0,0,0,.55);display:grid;place-items:center}
+.plate::before{content:"";position:absolute;inset:9%;border-radius:50%;border:1px solid rgba(120,70,10,.25)}
+.plate-emoji{font-size:6rem;filter:drop-shadow(0 14px 16px rgba(0,0,0,.3));animation:bob 4s ease-in-out infinite}
+.steam{position:absolute;top:-48px;left:50%;width:12px;height:44px;border-radius:12px;background:linear-gradient(180deg,rgba(255,246,233,.55),transparent);filter:blur(5px);animation:rise 3.2s ease-in-out infinite}
+.steam.s2{left:calc(50% - 28px);height:34px;animation-delay:.5s}
+.steam.s3{left:calc(50% + 18px);height:40px;animation-delay:1s}
+.ochip{position:absolute;background:rgba(38,6,9,.85);backdrop-filter:blur(6px);border:1px solid rgba(233,180,91,.45);color:var(--cream);padding:9px 14px;border-radius:14px;font-size:.82rem;font-weight:600;box-shadow:0 14px 26px -12px rgba(0,0,0,.5);white-space:nowrap}
+.ochip b{color:var(--goldsoft)}
+.ochip.c1{top:6%;left:-4%;animation:float 5s ease-in-out infinite}
+.ochip.c2{bottom:8%;right:-6%;animation:float 6.5s ease-in-out infinite .6s}
+.ochip.c3{top:40%;right:-12%;animation:float 5.8s ease-in-out infinite .3s}
+@media(max-width:960px){.hero{padding-top:130px}.hero-art{min-height:420px;margin-top:6px}.ochip.c1{left:0}.ochip.c3{right:0}.ochip.c2{right:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes rise{0%{transform:translateY(10px);opacity:0}35%{opacity:.8}100%{transform:translateY(-36px);opacity:0}}
+
+.ticker{background:linear-gradient(90deg,#f0c26a,#e2a63f 50%,#f0c26a);color:#4a0d13;overflow:hidden;border-block:1px solid rgba(74,13,19,.25)}
+.ticker-track{display:flex;width:max-content;animation:tick 32s linear infinite}
+.tset{display:flex}
+.tset span{padding:12px 26px;font-weight:700;letter-spacing:.14em;font-size:.82rem;white-space:nowrap;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.tset span.tl{font-family:'Baloo Tammudu 2';text-transform:none;letter-spacing:0}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+.shead{text-align:center;max-width:680px;margin:0 auto 46px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#a5681a;font-weight:700;letter-spacing:.22em;font-size:.7rem;text-transform:uppercase}
+.shead h2{font-family:'Fraunces',serif;font-size:clamp(1.85rem,4.5vw,2.7rem);line-height:1.15;margin:10px 0 4px}
+.shead .sub{color:var(--inksoft);font-size:.95rem}
+.shead .te-sub{color:#9b7f63;font-size:1rem}
+.dark .eyebrow{color:var(--gold)}
+.dark h2{color:var(--cream)}
+.dark .sub,.dark .te-sub{color:rgba(255,246,233,.7)}
+.orn{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;color:var(--gold2)}
+.orn::before,.orn::after{content:"";width:64px;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold2))}
+.orn::after{background:linear-gradient(90deg,var(--gold2),transparent)}
+.orn svg{width:18px;height:18px}
+
+.sp-row{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 24px;scrollbar-width:none}
+.sp-row::-webkit-scrollbar{display:none}
+.sp-card{flex:0 0 218px;scroll-snap-align:start;background:linear-gradient(165deg,#5d1119,#3a0a10);border:1px solid rgba(233,180,91,.45);border-radius:20px;padding:26px 18px 20px;text-align:center;color:var(--cream);transition:.3s;position:relative}
+.sp-card:hover{transform:translateY(-6px) rotate(-1deg);box-shadow:0 22px 40px -18px rgba(74,13,19,.55)}
+.sp-emoji{font-size:3.3rem;line-height:1;filter:drop-shadow(0 10px 14px rgba(0,0,0,.35))}
+.sp-card h4{font-family:'Fraunces',serif;margin-top:12px;font-size:1.04rem}
+.sp-card .t{font-family:'Baloo Tammudu 2';font-size:.72rem;color:rgba(255,246,233,.6);line-height:1.6}
+.sp-price{margin-top:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#3a1508;font-family:'Fraunces',serif;font-weight:700;font-size:1.3rem;border-radius:10px;padding:6px 0}
+.sp-price small{font-family:'Outfit';font-size:.58rem;letter-spacing:.2em;font-weight:800;margin-left:6px;vertical-align:3px}
+.sp-tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--cream);border:1px solid var(--line);color:#a5681a;font-size:.58rem;font-weight:800;letter-spacing:.12em;padding:4px 12px;border-radius:999px;white-space:nowrap}
+.sp-nav{display:flex;gap:10px;justify-content:flex-end}
+.sp-btn{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--gold2);background:#fff;color:#8a5a17;font-size:1.05rem;cursor:pointer;transition:.2s;display:grid;place-items:center}
+.sp-btn:hover{background:var(--gold2);color:#fff}
+.also{margin-top:30px;background:linear-gradient(135deg,#4a0d13,#6b1520);border-radius:18px;padding:22px 24px;color:var(--cream)}
+.also h5{text-align:center;font-family:'Fraunces',serif;color:var(--goldsoft);letter-spacing:.18em;font-size:.8rem;text-transform:uppercase;margin-bottom:14px}
+.also-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.also-chips span{border:1px solid rgba(233,180,91,.4);border-radius:999px;padding:7px 16px;font-size:.85rem;background:rgba(233,180,91,.08)}
+
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.why{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 22px;box-shadow:0 14px 30px -24px rgba(74,13,19,.4);transition:.25s}
+.why:hover{transform:translateY(-6px)}
+.why .ic{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#fdeecd,#f6d78c);display:grid;place-items:center;font-size:1.5rem;margin-bottom:14px}
+.why h4{font-family:'Fraunces',serif;font-size:1.08rem;margin-bottom:8px}
+.why p{font-size:.9rem;color:var(--inksoft);line-height:1.65}
+@media(max-width:980px){.why-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.why-grid{grid-template-columns:1fr}}
+
+.serve{color:var(--cream);background:linear-gradient(160deg,#3a0a10,#2b070b)}
+.serve-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.sv{border:1px solid rgba(233,180,91,.3);background:rgba(233,180,91,.06);border-radius:18px;padding:26px 20px;text-align:center;transition:.25s}
+.sv:hover{background:rgba(233,180,91,.12);transform:translateY(-5px)}
+.sv .e{font-size:2.2rem}
+.sv h4{font-family:'Fraunces',serif;margin:12px 0 6px;color:var(--goldsoft);font-size:1.02rem}
+.sv p{font-size:.85rem;color:rgba(255,246,233,.72);line-height:1.6}
+@media(max-width:940px){.serve-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.serve-grid{grid-template-columns:1fr}}
+
+.menu-toolbar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:4px}
+.search{display:flex;align-items:center;gap:9px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:10px 16px;flex:1;min-width:min(300px,100%);color:var(--inksoft)}
+.search svg{width:17px;height:17px;flex:none}
+.search input{border:0;outline:0;font:inherit;flex:1;background:transparent;color:var(--ink);min-width:0}
+.search:focus-within{border-color:var(--gold2);box-shadow:0 0 0 4px rgba(233,180,91,.18)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.78rem;color:var(--inksoft)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:11px;height:11px;border-radius:50%;flex:none}
+.dot.v{background:#1f9d3f;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #1f9d3f}
+.dot.nv{background:#c22b2b;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #c22b2b}
+.dot.e{background:#e5a13a;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #e5a13a}
+.dot.none{background:transparent;box-shadow:none}
+.menu-tabs{display:flex;gap:10px;overflow-x:auto;padding:14px 2px 18px;position:sticky;top:66px;z-index:40;background:linear-gradient(var(--cream) 82%,transparent);scrollbar-width:none}
+.menu-tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 18px;font-weight:600;font-size:.84rem;color:var(--inksoft);cursor:pointer;transition:.2s;font-family:inherit;white-space:nowrap}
+.tab:hover{border-color:var(--gold2);color:var(--ink)}
+.tab.on{background:linear-gradient(135deg,#4a0d13,#6b1520);color:var(--goldsoft);border-color:transparent;box-shadow:0 10px 20px -10px rgba(74,13,19,.5)}
+.mcat{margin-top:26px}
+.mcat-h{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:1.28rem;margin-bottom:14px}
+.mcat-h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.mcat-h .cnt{font-family:'Outfit';font-size:.68rem;color:#a5681a;background:#fdeeda;border:1px solid #efdcbb;padding:2px 10px;border-radius:999px;margin-left:6px}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px 36px}
+@media(max-width:820px){.mgrid{grid-template-columns:1fr}}
+.mi{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:14px;transition:.2s}
+.mi:hover{background:#fff;box-shadow:0 10px 24px -16px rgba(74,13,19,.35)}
+.mi b{font-weight:600;font-size:.96rem;display:inline}
+.tag{font-size:.56rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:#fdeeda;color:#a5681a;border:1px solid #efdcbb;padding:2px 9px;border-radius:999px;margin-left:8px;vertical-align:2px;white-space:nowrap}
+.leader{flex:1 1 20px;border-bottom:2px dotted #dcc7a2;transform:translateY(4px)}
+.pr{font-family:'Fraunces',serif;font-weight:700;color:#8a5a17;font-size:1.05rem;white-space:nowrap}
+.menu-note{text-align:center;color:var(--inksoft);font-size:.82rem;margin-top:34px}
+.empty{padding:56px 20px;text-align:center;color:var(--inksoft)}
+.empty b{font-family:'Fraunces',serif;display:block;font-size:1.35rem;color:var(--ink);margin-bottom:6px}
+
+.pk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+@media(max-width:920px){.pk-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto}}
+.pk{position:relative;background:#fff;border:1.5px solid var(--line);border-radius:22px;padding:30px 26px;display:flex;flex-direction:column;transition:.25s}
+.pk:hover{transform:translateY(-6px)}
+.pk.hot{border-color:var(--gold2);background:linear-gradient(180deg,#fffaf0,#fff3dd);box-shadow:0 26px 50px -26px rgba(163,105,26,.5)}
+.ribbon{position:absolute;top:-13px;right:22px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#3a1508;font-size:.64rem;font-weight:800;letter-spacing:.12em;padding:7px 14px;border-radius:999px;box-shadow:0 8px 18px -6px rgba(163,105,26,.6)}
+.pk h3{font-family:'Fraunces',serif;font-size:1.3rem}
+.pk .pk-sub{color:var(--inksoft);font-size:.88rem;margin:6px 0 16px;line-height:1.6}
+.price-line{font-family:'Fraunces',serif;font-weight:700;font-size:2rem;color:#8a5a17}
+.price-line small{font-family:'Outfit';font-weight:600;color:var(--inksoft);font-size:.8rem;letter-spacing:.02em}
+.pk ul{list-style:none;margin:18px 0 22px;display:grid;gap:10px}
+.pk li{display:flex;gap:10px;font-size:.9rem;color:var(--inksoft);line-height:1.5}
+.pk li::before{content:"✦";color:var(--gold2);font-size:.75rem;margin-top:2px}
+.pk .btn{margin-top:auto}
+.pk-note{text-align:center;color:var(--inksoft);font-size:.88rem;margin-top:30px}
+
+.loc-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:26px;align-items:stretch}
+@media(max-width:900px){.loc-grid{grid-template-columns:1fr}}
+.loc-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:32px;box-shadow:var(--shadow)}
+.loc-card .big{font-family:'Fraunces',serif;font-size:clamp(1.35rem,3vw,1.7rem);line-height:1.35;margin:16px 0 20px}
+.addr{background:#fdf6ea;border:1px dashed var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px;font-size:.93rem;line-height:1.7;color:var(--ink)}
+.addr b{color:#8a5a17;font-family:'Fraunces',serif}
+.loc-line{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;color:var(--inksoft);font-size:.94rem;line-height:1.6}
+.loc-line svg{width:19px;height:19px;color:var(--gold2);flex:none;margin-top:2px}
+.loc-line b{color:var(--ink)}
+.loc-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn-dark{background:linear-gradient(135deg,#4a0d13,#6b1520);color:var(--cream);box-shadow:0 12px 26px -12px rgba(74,13,19,.6)}
+.btn-dark:hover{transform:translateY(-2px)}
+.map-wrap{border-radius:22px;overflow:hidden;border:1.5px solid var(--line);min-height:380px;background:#efe2c8;box-shadow:var(--shadow);position:relative}
+.map-wrap iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
+.map-pin-note{position:absolute;left:12px;bottom:12px;background:rgba(38,6,9,.85);color:var(--cream);backdrop-filter:blur(6px);border:1px solid rgba(233,180,91,.4);font-size:.75rem;padding:8px 13px;border-radius:10px}
+.map-pin-note a{color:var(--goldsoft);font-weight:700}
+
+.order{background:radial-gradient(800px 400px at 50% 0,rgba(233,180,91,.16),transparent 60%),linear-gradient(165deg,#4a0d13,#2e070c);color:var(--cream);text-align:center}
+.order .tel{display:inline-block;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.3rem,7vw,4rem);color:var(--goldsoft);text-decoration:none;letter-spacing:.03em;margin:6px 0 24px;transition:.2s}
+.order .tel:hover{transform:scale(1.03);text-shadow:0 0 30px rgba(233,180,91,.45)}
+.order-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:860px;margin:38px auto 0}
+@media(max-width:700px){.steps{grid-template-columns:1fr}}
+.step{border:1px dashed rgba(233,180,91,.4);border-radius:16px;padding:20px 18px}
+.step b{color:var(--goldsoft);font-family:'Fraunces',serif;font-size:1rem}
+.step p{font-size:.85rem;color:rgba(255,246,233,.72);margin-top:6px;line-height:1.55}
+.apps{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px;align-items:center}
+.apps-label{font-size:.85rem;color:rgba(255,246,233,.7)}
+.app-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,246,233,.3);padding:10px 20px;border-radius:999px;color:var(--cream);text-decoration:none;font-weight:700;font-size:.9rem;transition:.2s}
+.app-chip:hover{transform:translateY(-2px);border-color:transparent}
+.app-chip.swiggy:hover{background:var(--swiggy);box-shadow:0 12px 26px -10px rgba(252,128,25,.6)}
+.app-chip.zomato:hover{background:var(--zomato);box-shadow:0 12px 26px -10px rgba(226,55,68,.6)}
+.app-chip svg{width:17px;height:17px}
+.mood{margin-top:30px;font-family:'Baloo Tammudu 2';font-size:1.1rem;color:var(--goldsoft)}
+
+footer{background:var(--deep2);color:rgba(255,246,233,.8);padding:58px 0 0}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:36px;padding-bottom:42px}
+@media(max-width:820px){.f-grid{grid-template-columns:1fr}}
+footer h5{font-family:'Fraunces',serif;color:var(--goldsoft);margin-bottom:14px;font-size:1.02rem}
+footer p{font-size:.9rem;line-height:1.7;color:rgba(255,246,233,.68)}
+footer a{color:rgba(255,246,233,.75);text-decoration:none;display:block;padding:4px 0;font-size:.92rem;transition:.2s}
+footer a:hover{color:var(--goldsoft)}
+.f-te{font-family:'Baloo Tammudu 2';color:var(--goldsoft);margin-top:8px}
+.f-bottom{border-top:1px solid rgba(233,180,91,.15);padding:18px 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;font-size:.78rem;color:rgba(255,246,233,.5)}
+
+.fab{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:12px;z-index:90}
+.fab a{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;box-shadow:0 14px 30px -10px rgba(0,0,0,.45);transition:.2s}
+.fab a:hover{transform:translateY(-3px)}
+.fab svg{width:26px;height:26px}
+.fab-call{background:linear-gradient(135deg,#e9b45b,#c9922f);animation:pulse 2.2s infinite}
+.fab-wa{background:#25d366}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(233,180,91,.55)}70%{box-shadow:0 0 0 18px rgba(233,180,91,0)}100%{box-shadow:0 0 0 0 rgba(233,180,91,0)}}
+
+@media (prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;transition:none!important}
+ html{scroll-behavior:auto}
+ .reveal{opacity:1;transform:none}
+}
+</style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <a href="#" class="nav-brand">
-            <div class="nav-logo">B</div>
-            <div class="nav-name">Jabilli <span>Cloud Kitchen</span></div>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#why">Why Us</a></li>
-            <li><a href="#packages">Packages</a></li>
-            <li><a href="#order" class="nav-order-btn">Order Now</a></li>
-        </ul>
-        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/><circle class="tw" cx="19" cy="4" r="0.5"/><circle class="tw tw2" cx="15.5" cy="2.5" r="0.4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></symbol>
+  <symbol id="i-scooter" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="2.5"/><circle cx="18.5" cy="17.5" r="2.5"/><path d="M8 17.5h8M15 6h-2l-3 7.5M12 8h4l2.5 7"/></symbol>
+</svg>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-decor hero-decor-1"></div>
-        <div class="hero-decor hero-decor-2"></div>
-        <div class="hero-decor hero-decor-3"></div>
-        <div class="hero-content">
-            <div class="hero-left">
-                <div class="hero-badge">★ HYDERABAD'S HOMELY KITCHEN</div>
-                <h1>Jabilli <span>Cloud</span> Kitchen</h1>
-                <div class="hero-tagline">Homely Food, Made with Love ❤️</div>
-                <p class="hero-desc">Delicious and affordable homely food — just like Amma's kitchen. Freshly prepared, delivered with care, right to your doorstep.</p>
-                <div class="hero-badges">
-                    <div class="hero-badge-item"><span class="icon">🛵</span> FREE Delivery within 3 KM</div>
-                    <div class="hero-badge-item"><span class="icon">📍</span> Behind Kamineni Hospital</div>
-                </div>
-                <div class="hero-cta">
-                    <a href="#menu" class="btn-primary">🍛 Explore Menu</a>
-                    <a href="tel:7569355400" class="btn-outline">📞 Call to Order</a>
-                </div>
-            </div>
-            <div class="hero-right">
-                <div class="hero-food-grid">
-                    <div class="food-card"><div class="food-emoji">🍗</div><div class="food-name">Chicken Fry</div><div class="food-price">₹109</div></div>
-                    <div class="food-card"><div class="food-emoji">🍛</div><div class="food-name">Chicken Curry</div><div class="food-price">₹99</div></div>
-                    <div class="food-card"><div class="food-emoji">🍚</div><div class="food-name">Biryani</div><div class="food-price">₹149</div></div>
-                    <div class="food-card"><div class="food-emoji">🥘</div><div class="food-name">Ragi Mudda</div><div class="food-price">₹199</div></div>
-                </div>
-            </div>
-        </div>
-    </section>
+<header id="hd">
+  <nav class="nav">
+    <a class="brand" href="#home">
+      <span class="brand-badge"><svg class="si" style="stroke-width:2.4"><use href="#i-moon"/></svg></span>
+      <span><span class="brand-name">Jabilli</span><br><span class="brand-sub">Cloud Kitchen</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#specials">Specials</a>
+      <a href="#menu">Menu</a>
+      <a href="#packages">Packages</a>
+      <a href="#location">Location</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-gold btn-sm" href="tel:+917569355400"><svg class="si"><use href="#i-phone"/></svg>Order Now</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
+</header>
 
-    <!-- SPECIAL STRIP -->
-    <div class="special-strip">
-        Good Food ❤️ Good Mood! &nbsp;|&nbsp; <span>🛵 FREE DELIVERY within 3 KM</span> &nbsp;|&nbsp; 📞 7569355400 &nbsp;|&nbsp; 📅 Weekly & Monthly Packages Available
+<section class="hero grain" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="chip-loc"><svg class="si"><use href="#i-pin"/></svg> Just behind Kamineni Hospital · Prashanth Nagar, Mansoorabad, LB Nagar</span>
+      <h1>Homely Food,<br><em>Made with Love</em> ❤️</h1>
+      <p class="te hero-te">అమ్మ వంట రుచి · ప్రేమతో వండిన తిండి</p>
+      <p class="lead">Jabilli Cloud Kitchen brings you warm, homely meals at pocket-friendly prices — fresh veg &amp; non-veg, daily rice bowls, bagara specials, biryani and more. Perfect for students, hospital visitors, working professionals &amp; families.</p>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="tel:+917569355400"><svg class="si"><use href="#i-phone"/></svg>Order Now · 7569355400</a>
+        <a class="btn btn-ghost" href="#menu">See Menu &amp; Prices</a>
+      </div>
+      <p class="ota-line">Also order online — <a href="https://www.swiggy.com/menu/1398265?source=sharing" target="_blank" rel="noopener">Swiggy</a> · <a href="https://zomato.onelink.me/xqzv/e3gg4u5e" target="_blank" rel="noopener">Zomato</a></p>
+      <div class="hstats">
+        <div class="hstat"><span class="e">🛵</span><span><b>FREE Delivery</b> within 3 KM</span></div>
+        <div class="hstat"><span class="e">📦</span><span><b>Weekly &amp; Monthly</b> packages</span></div>
+        <div class="hstat"><span class="e">🍲</span><span>Meals from <b>₹30</b></span></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="moon"><svg class="si" style="stroke-width:1.6"><use href="#i-moon"/></svg></div>
+      <div class="plate-wrap">
+        <div class="ring"></div>
+        <div class="plate"><span class="plate-emoji">🍛</span></div>
+        <span class="steam"></span><span class="steam s2"></span><span class="steam s3"></span>
+      </div>
+      <div class="ochip c1">🍗 Chicken Fry · <b>₹109</b></div>
+      <div class="ochip c2">🍚 Chicken Biryani · <b>₹149</b></div>
+      <div class="ochip c3">🥛 Ragi Java · <b>₹30</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="tset">
+      <span>Good Food ❤️ Good Mood</span><span class="tl">మంచి తిండి ❤️ మంచి మూడ్</span><span>🛵 Free Delivery within 3 KM</span><span>📦 Weekly &amp; Monthly Packages</span><span>🍲 Homely Food, Made with Love</span><span>📍 Just Behind Kamineni Hospital</span>
+    </div>
+    <div class="tset">
+      <span>Good Food ❤️ Good Mood</span><span class="tl">మంచి తిండి ❤️ మంచి మూడ్</span><span>🛵 Free Delivery within 3 KM</span><span>📦 Weekly &amp; Monthly Packages</span><span>🍲 Homely Food, Made with Love</span><span>📍 Just Behind Kamineni Hospital</span>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="specials">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">✦ From our kitchen ✦</span>
+      <h2>Crowd Favourites</h2>
+      <p class="te te-sub">మా స్పెషల్స్ — అందరి favourite డిషెస్</p>
+      <div class="orn"><svg class="si"><use href="#i-moon"/></svg></div>
+    </div>
+    <div class="sp-row reveal" id="spRow">
+      <div class="sp-card"><span class="sp-tag">Bestseller</span><div class="sp-emoji">🍗</div><h4>Chicken Fry</h4><p class="t">చికెన్ ఫ్రై</p><div class="sp-price">₹109<small>ONLY</small></div></div>
+      <div class="sp-card"><span class="sp-tag">Bestseller</span><div class="sp-emoji">🍛</div><h4>Chicken Curry</h4><p class="t">చికెన్ కర్రీ</p><div class="sp-price">₹99<small>ONLY</small></div></div>
+      <div class="sp-card"><span class="sp-tag">Hot &amp; Fresh</span><div class="sp-emoji">🍚</div><h4>Chicken Biryani</h4><p class="t">చికెన్ బిర్యానీ</p><div class="sp-price">₹149<small>ONLY</small></div></div>
+      <div class="sp-card"><span class="sp-tag">Millets Special</span><div class="sp-emoji">🍡</div><h4>Ragi Mudde + Chicken Curry</h4><p class="t">రాగి ముద్ద + చికెన్ కర్రీ</p><div class="sp-price">₹199<small>ONLY</small></div></div>
+      <div class="sp-card"><span class="sp-tag">Steal Deal · ₹30</span><div class="sp-emoji">🥛</div><h4>Ragi Java</h4><p class="t">రాగి జావా</p><div class="sp-price">₹30<small>ONLY</small></div></div>
+      <div class="sp-card"><span class="sp-tag">Veg Delight</span><div class="sp-emoji">🥘</div><h4>Veg Pulav</h4><p class="t">వెజ్ పులావ్</p><div class="sp-price">₹149<small>ONLY</small></div></div>
+    </div>
+    <div class="sp-nav reveal">
+      <button class="sp-btn" id="spL" aria-label="Scroll left">←</button>
+      <button class="sp-btn" id="spR" aria-label="Scroll right">→</button>
+    </div>
+    <div class="also reveal">
+      <h5>✦ Also Available ✦</h5>
+      <div class="also-chips">
+        <span>🍢 Tandoori Items</span><span>🥚 Egg Items</span><span>🥦 Veg Items</span><span>🍳 Non-Veg Tiffins</span><span>🍝 Pasta</span><span>🍜 Maggi</span><span>🍛 Bagara Specials</span><span>🥘 Rice Bowls</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why" style="padding-top:20px">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">Why Jabilli</span>
+      <h2>A Service, Not Just a Business ❤️</h2>
+      <p class="te te-sub">ఇంటి రుచి — మీ చుట్టుపక్కలే</p>
+      <div class="orn"><svg class="si"><use href="#i-moon"/></svg></div>
+    </div>
+    <div class="why-grid">
+      <div class="why reveal"><div class="ic">🛵</div><h4>Free Delivery</h4><p>Hot &amp; fresh at your doorstep — absolutely <b>FREE within 3 KM of LB Nagar</b>. No minimum order, no hidden charges.</p></div>
+      <div class="why reveal d1"><div class="ic">🏥</div><h4>Unbeatable Location</h4><p>We're literally <b>just behind Kamineni Hospital</b> — minutes away for visitors, attendants and staff who need a proper homely meal.</p></div>
+      <div class="why reveal d2"><div class="ic">❤️</div><h4>Made with Love</h4><p>Small batches, clean kitchen, homely taste — the kind of food that reminds you of home, not a commercial kitchen.</p></div>
+      <div class="why reveal d3"><div class="ic">📦</div><h4>Weekly &amp; Monthly Packs</h4><p>Steady, affordable meal plans built around your budget — for students, professionals &amp; families.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section serve grain dark">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">Who we serve</span>
+      <h2>For Every Kind of Hunger</h2>
+      <div class="orn"><svg class="si"><use href="#i-moon"/></svg></div>
+    </div>
+    <div class="serve-grid">
+      <div class="sv reveal"><div class="e">🎓</div><h4>Students</h4><p>Tiffins &amp; meal plans that are light on the pocket, heavy on taste.</p></div>
+      <div class="sv reveal d1"><div class="e">🏥</div><h4>Hospital Visitors &amp; Attendants</h4><p>Steps away from Kamineni Hospital — fresh homely meals without going far.</p></div>
+      <div class="sv reveal d2"><div class="e">💼</div><h4>Working Professionals</h4><p>Skip cooking after a long day — order a hot homely box instead.</p></div>
+      <div class="sv reveal d3"><div class="e">👨‍👩‍👧</div><h4>Families</h4><p>Full family meals — bagara specials, curries &amp; rice bowls for everyone.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="menu">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">Full menu &amp; prices</span>
+      <h2>What's Cooking Today? 🍲</h2>
+      <p class="te te-sub">మంచి తిండి ❤️ మంచి మూడ్</p>
+      <div class="orn"><svg class="si"><use href="#i-moon"/></svg></div>
     </div>
 
-    <!-- MENU -->
-    <section class="menu" id="menu">
-        <div class="section-header">
-            <div class="overline">Our Menu</div>
-            <h2>Taste the Difference 🍛</h2>
-            <p>From traditional Bagara Rice to sizzling Chicken Fry — authentic flavors every day!</p>
-            <div class="line"></div>
+    <div class="menu-toolbar reveal">
+      <label class="search"><svg class="si"><use href="#i-search"/></svg><input id="q" type="text" placeholder="Search the menu… try "chicken", "ragi", "juice"" aria-label="Search menu"></label>
+      <div class="legend">
+        <span><i class="dot v"></i> Veg</span><span><i class="dot nv"></i> Non-Veg</span><span><i class="dot e"></i> Egg</span>
+      </div>
+    </div>
+    <div class="menu-tabs" id="menu-tabs" role="tablist"></div>
+    <div id="menu-list"></div>
+    <p class="menu-note">Prices in ₹ · subject to change — please confirm while ordering · For the day's availability, call <a href="tel:+917569355400" style="color:#8a5a17;font-weight:700">7569355400</a></p>
+  </div>
+</section>
+
+<section class="section" id="packages" style="padding-top:30px">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">Meal plans</span>
+      <h2>Weekly &amp; Monthly Packages 📦</h2>
+      <p class="te te-sub">వారం · నెల ప్యాకేజీలు అందుబాటులో</p>
+      <div class="orn"><svg class="si"><use href="#i-moon"/></svg></div>
+    </div>
+    <div class="pk-grid">
+      <div class="pk reveal">
+        <h3>Single Meal Box 🍱</h3>
+        <p class="pk-sub">One complete homely thali box, delivered fresh every day.</p>
+        <div class="price-line">₹100 <small>/ meal box</small></div>
+        <ul>
+          <li>Steamed rice + curry + curd</li>
+          <li>Daily changing homely menu</li>
+          <li>Add-ons from ₹30 — ragi java &amp; more</li>
+          <li>FREE delivery within 3 KM</li>
+        </ul>
+        <a class="btn btn-dark" href="tel:+917569355400"><svg class="si"><use href="#i-phone"/></svg>Call to Order</a>
+      </div>
+      <div class="pk reveal d1">
+        <h3>Weekly Package 📅</h3>
+        <p class="pk-sub">A full week of worry-free homely meals.</p>
+        <div class="price-line">Custom <small>/ week · call for quote</small></div>
+        <ul>
+          <li>7-day lunch &amp; dinner plans</li>
+          <li>Mix of rice bowls, chapati combos &amp; curries</li>
+          <li>Veg &amp; non-veg options</li>
+          <li>FREE delivery within 3 KM</li>
+        </ul>
+        <a class="btn btn-dark" href="tel:+917569355400"><svg class="si"><use href="#i-phone"/></svg>Build My Weekly Plan</a>
+      </div>
+      <div class="pk hot reveal d2">
+        <span class="ribbon">MOST LOVED ❤️</span>
+        <h3>Monthly Package 📆</h3>
+        <p class="pk-sub">Best value for students &amp; working professionals.</p>
+        <div class="price-line">Custom <small>/ month · best value</small></div>
+        <ul>
+          <li>30 days of homely meals</li>
+          <li>Priority delivery for hospital visitors &amp; attendants</li>
+          <li>Diet-friendly picks — ragi, oats, fruit bowls</li>
+          <li>Pause / resume anytime</li>
+        </ul>
+        <a class="btn btn-gold" href="tel:+917569355400"><svg class="si"><use href="#i-phone"/></svg>Build My Monthly Plan</a>
+      </div>
+    </div>
+    <p class="pk-note reveal">Plans are flexible — call us and we'll build one around your budget. 📞 <b>7569355400</b></p>
+  </div>
+</section>
+
+<section class="section" id="location" style="padding-top:30px">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">Find us</span>
+      <h2>Just Behind Kamineni Hospital 🏥</h2>
+      <p class="te te-sub">ఫ్రీ డెలివరీ · LB నగర్ 3 కి.మీ. లోపు</p>
+      <div class="orn"><svg class="si"><use href="#i-moon"/></svg></div>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card reveal">
+        <span class="chip-loc" style="border-color:var(--line);background:#fdf3e0;color:#a5681a"><svg class="si"><use href="#i-pin"/></svg> Location Highlight</span>
+        <p class="big">We are located literally just behind <b>Kamineni Hospital</b> — within 3 KM of LB Nagar.</p>
+        <div class="addr">
+          <b>Jabilli Cloud Kitchen 📍</b><br>
+          H No 3-8-497/2, Plot No 28, Road No 3,<br>
+          Prashanth Nagar, Mansoorabad,<br>
+          LB Nagar, Hyderabad — 500074
         </div>
-        <div class="menu-grid">
-
-            <div class="menu-card fade-in">
-                <div class="menu-card-header">🌿 Bagara Specials</div>
-                <div class="menu-card-items">
-                    <div class="menu-row"><span class="name">Bagara Rice with Chicken Curry</span><span class="dots"></span><span class="price">₹199</span></div>
-                    <div class="menu-row"><span class="name">Bagara Rice with Chicken Fry</span><span class="dots"></span><span class="price">₹219</span></div>
-                    <div class="menu-row"><span class="name">Bagara Rice with Gongura Chicken</span><span class="dots"></span><span class="price">₹219</span></div>
-                    <div class="menu-row"><span class="name">Bagara Rice with Chicken Liver Fry</span><span class="dots"></span><span class="price">₹199</span></div>
-                    <div class="menu-row"><span class="name">Bagara Rice with Chepala Pulusu</span><span class="dots"></span><span class="price">₹229</span></div>
-                    <div class="menu-row"><span class="name">Bagara Rice with Egg Bhurji</span><span class="dots"></span><span class="price">₹149</span></div>
-                    <div class="menu-row"><span class="name">Bagara Rice with Aloo Fry & Sambar</span><span class="dots"></span><span class="price">₹149</span></div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-card-header">🍲 Main Course</div>
-                <div class="menu-card-items">
-                    <div class="menu-row"><span class="name">Chicken Curry</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Chicken Fry</span><span class="dots"></span><span class="price">₹109</span></div>
-                    <div class="menu-row"><span class="name">Chicken Gongura Curry</span><span class="dots"></span><span class="price">₹109</span></div>
-                    <div class="menu-row"><span class="name">Chicken Liver Fry</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Fish Fry (1 Piece)</span><span class="dots"></span><span class="price">₹79</span></div>
-                    <div class="menu-row"><span class="name">Ragimudde with Chicken Curry</span><span class="dots"></span><span class="price">₹199</span></div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-card-header">🍚 Biryani & Pulao</div>
-                <div class="menu-card-items">
-                    <div class="menu-row"><span class="name">Chicken Pulao</span><span class="dots"></span><span class="price">₹199</span></div>
-                    <div class="menu-row"><span class="name">Chicken Gongura Pulao</span><span class="dots"></span><span class="price">₹219</span></div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-card-header">🍚 Rice Bowls</div>
-                <div class="menu-card-items">
-                    <div class="menu-row"><span class="name">Meal Box (Pappu, Curry, Curd, Pickle)</span><span class="dots"></span><span class="price">₹100</span></div>
-                    <div class="menu-row"><span class="name">Pappu Annam with Papad & Curd</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Avakaya Annam with Papad</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Vellulli Ghee Karam Rice</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Sambar Rice with Papad</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Pulihora / Curd Rice / Tomato Rice</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Jeera Rice / Pudina Rice</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Kothimeera Rice</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Palila Pachi Pulusu Rice</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Egg Fried Rice</span><span class="dots"></span><span class="price">₹99</span></div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-card-header">🫓 Chapati Combos</div>
-                <div class="menu-card-items">
-                    <div class="menu-row"><span class="name">4 Chapati with Chicken Curry</span><span class="dots"></span><span class="price">₹179</span></div>
-                    <div class="menu-row"><span class="name">4 Chapati with Aloo Fry & Pappu</span><span class="dots"></span><span class="price">₹149</span></div>
-                    <div class="menu-row"><span class="name">4 Chapati with Egg Bhurji</span><span class="dots"></span><span class="price">₹149</span></div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-card-header">🥘 Tiffins</div>
-                <div class="menu-card-items">
-                    <div class="menu-row"><span class="name">Poori with Besan</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Poori with Chicken Curry</span><span class="dots"></span><span class="price">₹149</span></div>
-                    <div class="menu-row"><span class="name">Upma</span><span class="dots"></span><span class="price">₹59</span></div>
-                    <div class="menu-row"><span class="name">Upma with Chicken Curry</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Pasta</span><span class="dots"></span><span class="price">₹99</span></div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-card-header">🍜 Maggi & More</div>
-                <div class="menu-card-items">
-                    <div class="menu-row"><span class="name">Plain Maggi</span><span class="dots"></span><span class="price">₹49</span></div>
-                    <div class="menu-row"><span class="name">Masala Maggi</span><span class="dots"></span><span class="price">₹59</span></div>
-                    <div class="menu-row"><span class="name">Egg Maggi</span><span class="dots"></span><span class="price">₹69</span></div>
-                    <div class="menu-row"><span class="name">Pasta</span><span class="dots"></span><span class="price">₹99</span></div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-card-header">🥚 Omelette</div>
-                <div class="menu-card-items">
-                    <div class="menu-row"><span class="name">Plain Double Egg Omelette</span><span class="dots"></span><span class="price">₹69</span></div>
-                    <div class="menu-row"><span class="name">Veggies Double Egg Omelette</span><span class="dots"></span><span class="price">₹79</span></div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-card-header">🍹 Juices & Drinks</div>
-                <div class="menu-card-items">
-                    <div class="menu-row"><span class="name">ABC Juice</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Carrot Juice / Banana Shake</span><span class="dots"></span><span class="price">₹49</span></div>
-                    <div class="menu-row"><span class="name">Lemon Juice / Pudina Juice</span><span class="dots"></span><span class="price">₹49</span></div>
-                    <div class="menu-row"><span class="name">Butter Milk</span><span class="dots"></span><span class="price">₹49</span></div>
-                </div>
-            </div>
-
-            <div class="menu-card fade-in">
-                <div class="menu-card-header">🥗 Healthy & Diet Food</div>
-                <div class="menu-card-items">
-                    <div class="menu-row"><span class="name">Masala Oats with Veggies Omelette</span><span class="dots"></span><span class="price">₹119</span></div>
-                    <div class="menu-row"><span class="name">Masala Oats with Ragi & Veggies</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Bread with Peanut Butter</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Boiled Eggs</span><span class="dots"></span><span class="price">₹99</span></div>
-                    <div class="menu-row"><span class="name">Fruit Bowl</span><span class="dots"></span><span class="price">₹49</span></div>
-                </div>
-            </div>
-
+        <div class="loc-line"><svg class="si"><use href="#i-scooter"/></svg><span><b>Delivery:</b> FREE within 3 KM of LB Nagar 🛵</span></div>
+        <div class="loc-line"><svg class="si"><use href="#i-phone"/></svg><span><b>Can't find us?</b> Call us — we'll happily guide you.</span></div>
+        <div class="loc-btns">
+          <a class="btn btn-dark" target="_blank" rel="noopener" href="https://maps.app.goo.gl/pNTVFt41TXn4LFPd9">🧭 Get Directions</a>
+          <a class="btn btn-gold" href="tel:+917569355400"><svg class="si"><use href="#i-phone"/></svg>Call Us</a>
         </div>
-    </section>
+      </div>
+      <div class="map-wrap reveal d1">
+        <iframe title="Jabilli Cloud Kitchen location map — Prashanth Nagar, Mansoorabad, LB Nagar, Hyderabad 500074" loading="lazy"
+          src="https://maps.google.com/maps?q=Jabilli%20Cloud%20Kitchen%2C%20Prashanth%20Nagar%2C%20Mansoorabad%2C%20LB%20Nagar%2C%20Hyderabad%20500074&z=15&output=embed"></iframe>
+        <div class="map-pin-note">Exact pin — <a href="https://maps.app.goo.gl/pNTVFt41TXn4LFPd9" target="_blank" rel="noopener">open in Google Maps ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- WHY CHOOSE US -->
-    <section class="features" id="why">
-        <div class="section-header">
-            <div class="overline">Why Choose Us</div>
-            <h2>More Than Just Food ❤️</h2>
-            <p>We serve love on every plate — that's the Jabilli promise!</p>
-            <div class="line"></div>
-        </div>
-        <div class="features-grid">
-            <div class="feature-box fade-in">
-                <div class="icon">🍛</div>
-                <h3>Homely Taste</h3>
-                <p>Authentic home-style cooking with fresh ingredients. Just like Amma's kitchen!</p>
-            </div>
-            <div class="feature-box fade-in">
-                <div class="icon">💰</div>
-                <h3>Affordable Prices</h3>
-                <p>Meals starting at just ₹39. Quality food that doesn't break the bank.</p>
-            </div>
-            <div class="feature-box fade-in">
-                <div class="icon">🛵</div>
-                <h3>Free Delivery</h3>
-                <p>FREE delivery within 3 KM radius. No minimum order required!</p>
-            </div>
-            <div class="feature-box fade-in">
-                <div class="icon">📦</div>
-                <h3>Meal Packages</h3>
-                <p>Weekly & monthly plans. Perfect for bachelors & families!</p>
-            </div>
-        </div>
-    </section>
+<section class="section order grain dark" id="contact">
+  <div class="wrap">
+    <div class="shead reveal" style="margin-bottom:10px">
+      <span class="eyebrow" style="color:var(--gold)">Order now</span>
+      <h2>Hungry? We're One Call Away ❤️</h2>
+      <p class="te-sub te">ఒక్క కాల్ చేయండి — వేడి వేడి భోజనం మీ ఇంటికి</p>
+    </div>
+    <a class="tel reveal" href="tel:+917569355400">📞 7569355400</a>
+    <div class="order-btns reveal">
+      <a class="btn btn-gold" href="tel:+917569355400"><svg class="si"><use href="#i-phone"/></svg>Call Now</a>
+      <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/917569355400?text=Hi%20Jabilli!%20I%20would%20like%20to%20place%20an%20order.">
+        <svg class="sfill" style="width:18px;height:18px"><use href="#i-wa"/></svg>WhatsApp Us</a>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><b>1 · Call or WhatsApp</b><p>Ring us at 7569355400 and tell us what you're craving.</p></div>
+      <div class="step reveal d1"><b>2 · Tell us your meals</b><p>Single box, family meal, or a weekly / monthly plan — your choice.</p></div>
+      <div class="step reveal d2"><b>3 · Hot food at your door</b><p>FREE delivery within 3 KM of LB Nagar. Fresh &amp; homely, every time.</p></div>
+    </div>
+    <div class="apps reveal">
+      <span class="apps-label">Also order on —</span>
+      <a class="app-chip swiggy" target="_blank" rel="noopener" href="https://www.swiggy.com/menu/1398265?source=sharing">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.6 2 4 5.5 4 9.9c0 1.8.6 3.4 1.7 4.7L12 22l6.3-7.4A7.4 7.4 0 0 0 20 9.9C20 5.5 16.4 2 12 2zm0 11.2a3.4 3.4 0 1 1 0-6.8 3.4 3.4 0 0 1 0 6.8z"/></svg>
+        Order on Swiggy</a>
+      <a class="app-chip zomato" target="_blank" rel="noopener" href="https://zomato.onelink.me/xqzv/e3gg4u5e">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.6 2 4 5.5 4 9.9c0 1.8.6 3.4 1.7 4.7L12 22l6.3-7.4A7.4 7.4 0 0 0 20 9.9C20 5.5 16.4 2 12 2zm0 11.2a3.4 3.4 0 1 1 0-6.8 3.4 3.4 0 0 1 0 6.8z"/></svg>
+        Order on Zomato</a>
+    </div>
+    <p class="mood reveal">Good Food ❤️ Good Mood</p>
+  </div>
+</section>
 
-    <!-- PACKAGES -->
-    <section class="packages" id="packages">
-        <div class="section-header">
-            <div class="overline">Meal Plans</div>
-            <h2>Weekly & Monthly Packages 📋</h2>
-            <p>Subscribe and save more on your daily meals!</p>
-            <div class="line"></div>
-        </div>
-        <div class="packages-grid">
-            <div class="pkg-card fade-in">
-                <div class="pkg-card-top">
-                    <div class="pkg-icon">📅</div>
-                    <h3>Weekly Package</h3>
-                    <p>7 Days of Homely Meals</p>
-                </div>
-                <div class="pkg-card-body">
-                    <ul>
-                        <li>Breakfast + Lunch OR Lunch + Dinner</li>
-                        <li>Fresh home-style cooking daily</li>
-                        <li>Customizable menu options</li>
-                        <li>Perfect for bachelors & students</li>
-                        <li>Free delivery included</li>
-                    </ul>
-                    <a href="tel:7569355400" class="pkg-btn">📞 Call to Subscribe</a>
-                </div>
-            </div>
-            <div class="pkg-card fade-in">
-                <div class="pkg-card-top gold">
-                    <div class="pkg-icon">📆</div>
-                    <h3>Monthly Package</h3>
-                    <p>30 Days of Love & Care</p>
-                </div>
-                <div class="pkg-card-body">
-                    <ul>
-                        <li>All meals — Breakfast, Lunch & Dinner</li>
-                        <li>Biggest savings on your food bill</li>
-                        <li>Hygienic kitchen, quality ingredients</li>
-                        <li>Ideal for families & professionals</li>
-                        <li>Free delivery + priority service</li>
-                    </ul>
-                    <a href="tel:7569355400" class="pkg-btn gold">📞 Call to Subscribe</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer>
+  <div class="wrap f-grid">
+    <div>
+      <a class="brand" href="#home" style="margin-bottom:14px">
+        <span class="brand-badge"><svg class="si" style="stroke-width:2.4"><use href="#i-moon"/></svg></span>
+        <span><span class="brand-name">Jabilli</span><br><span class="brand-sub">Cloud Kitchen</span></span>
+      </a>
+      <p>Delicious &amp; affordable homely food — veg &amp; non-veg, made fresh with love. Serving our neighbours behind Kamineni Hospital, LB Nagar.</p>
+      <p class="f-te">జబిల్లి క్లౌడ్ కిచెన్ · మంచి తిండి ❤️ మంచి మూడ్</p>
+    </div>
+    <div>
+      <h5>Quick Links</h5>
+      <a href="#specials">Specials</a><a href="#menu">Menu &amp; Prices</a><a href="#packages">Weekly / Monthly Plans</a><a href="#location">Location</a><a href="#contact">Order Now</a>
+      <a href="https://www.swiggy.com/menu/1398265?source=sharing" target="_blank" rel="noopener">Order on Swiggy ↗</a>
+      <a href="https://zomato.onelink.me/xqzv/e3gg4u5e" target="_blank" rel="noopener">Order on Zomato ↗</a>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <a href="tel:+917569355400">📞 7569355400</a>
+      <p>H No 3-8-497/2, Plot No 28, Road No 3,<br>Prashanth Nagar, Mansoorabad,<br>LB Nagar, Hyderabad — 500074</p>
+      <p style="margin-top:8px">🛵 FREE delivery within 3 KM of LB Nagar<br>📦 Weekly &amp; monthly packages available</p>
+      <a href="https://maps.app.goo.gl/pNTVFt41TXn4LFPd9" target="_blank" rel="noopener" style="margin-top:8px">🧭 Open in Google Maps ↗</a>
+    </div>
+  </div>
+  <div class="wrap f-bottom">
+    <span>© <span id="yr"></span> Jabilli Cloud Kitchen · All rights reserved</span>
+    <span>Thank you for supporting local ❤️ · Good Food ❤️ Good Mood</span>
+  </div>
+</footer>
 
-    <!-- AUDIENCE -->
-    <section class="audience">
-        <div class="section-header">
-            <div class="overline">Who We Serve</div>
-            <h2>Delicious Food for Everyone ❤️</h2>
-            <div class="line"></div>
-        </div>
-        <div class="audience-grid">
-            <div class="aud-item fade-in"><div class="aud-icon">👨‍🎓</div><h4>Students</h4></div>
-            <div class="aud-item fade-in"><div class="aud-icon">🏥</div><h4>Hospital Visitors</h4></div>
-            <div class="aud-item fade-in"><div class="aud-icon">💼</div><h4>Professionals</h4></div>
-            <div class="aud-item fade-in"><div class="aud-icon">👨‍👩‍👧‍👦</div><h4>Families</h4></div>
-            <div class="aud-item fade-in"><div class="aud-icon">🏠</div><h4>Bachelors</h4></div>
-        </div>
-    </section>
+<div class="fab">
+  <a class="fab-wa" target="_blank" rel="noopener" aria-label="Order on WhatsApp" href="https://wa.me/917569355400?text=Hi%20Jabilli!%20I%20would%20like%20to%20place%20an%20order."><svg class="sfill"><use href="#i-wa"/></svg></a>
+  <a class="fab-call" aria-label="Call to order" href="tel:+917569355400"><svg class="si"><use href="#i-phone"/></svg></a>
+</div>
 
-    <!-- ORDER -->
-    <section class="order" id="order">
-        <div class="order-content">
-            <h2>Ready to Order? 🍛</h2>
-            <p class="subtitle">Call us now or order on your favorite platform!</p>
-            <div class="order-phone"><a href="tel:7569355400">📞 7569355400</a></div>
-            <div class="order-btns">
-                <a href="https://www.swiggy.com" target="_blank" class="order-btn swiggy">🛵 Order on Swiggy</a>
-                <a href="https://www.zomato.com" target="_blank" class="order-btn zomato">🍽️ Order on Zomato</a>
-            </div>
-        </div>
-    </section>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+const hd = document.getElementById('hd');
+addEventListener('scroll', () => hd.classList.toggle('sc', scrollY > 10), {passive:true});
+const burger = document.getElementById('burger');
+burger.onclick = () => {
+  const open = document.body.classList.toggle('nav-open');
+  burger.setAttribute('aria-expanded', open);
+};
+document.querySelectorAll('.nav-links a').forEach(a =>
+  a.addEventListener('click', () => document.body.classList.remove('nav-open')));
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-brand">Jabilli Cloud Kitchen</div>
-        <div class="footer-tagline">"Good Food ❤️ Good Mood!"</div>
-        <div class="footer-info">
-            📍 Behind Kamineni Hospital, LB Nagar, Hyderabad<br>
-            📞 <a href="tel:7569355400">7569355400</a>
-        </div>
-        <div class="footer-links">
-            <a href="https://www.swiggy.com" target="_blank" title="Swiggy">🛵</a>
-            <a href="https://www.zomato.com" target="_blank" title="Zomato">🍽️</a>
-            <a href="https://wa.me/917569355400" target="_blank" title="WhatsApp">💬</a>
-        </div>
-        <div class="footer-copy">© 2026 Jabilli Cloud Kitchen. Made with ❤️</div>
-    </footer>
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    <!-- FLOATS -->
-    <a href="https://wa.me/917569355400" target="_blank" class="float-btn float-wa" title="WhatsApp">💬</a>
-    <a href="tel:7569355400" class="float-btn float-call" title="Call Now">📞</a>
+const spRow = document.getElementById('spRow');
+document.getElementById('spL').onclick = () => spRow.scrollBy({left:-260, behavior:'smooth'});
+document.getElementById('spR').onclick = () => spRow.scrollBy({left:260, behavior:'smooth'});
 
-    <script>
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    </script>
+const MENU = [
+ {cat:"Bagara Specials",icon:"🍛",items:[
+  {n:"Bagara Rice with Chicken Curry",p:199,t:"nv",tag:"Bestseller"},
+  {n:"Bagara Rice with Chicken Fry",p:219,t:"nv"},
+  {n:"Bagara Rice with Gongura Chicken Curry",p:219,t:"nv"},
+  {n:"Bagara Rice with Chicken Liver Fry",p:199,t:"nv"},
+  {n:"Bagara Rice with Chepala Pulusu (1 pc)",p:229,t:"nv"},
+  {n:"Bagara Rice with Egg Bhurji",p:149,t:"e"},
+  {n:"Bagara Rice with Aloo Fry & Sambar",p:149,t:"v"},
+ ]},
+ {cat:"Main Course",icon:"🍗",items:[
+  {n:"Chicken Curry",p:99,t:"nv",tag:"Bestseller"},
+  {n:"Chicken Fry",p:109,t:"nv",tag:"Bestseller"},
+  {n:"Chicken Gongura Curry",p:109,t:"nv"},
+  {n:"Chicken Liver Fry",p:99,t:"nv"},
+  {n:"Fish Fry (1 pc)",p:79,t:"nv"},
+  {n:"Ragimudde with Chicken Curry",p:199,t:"nv",tag:"Healthy"},
+ ]},
+ {cat:"Biryani & Pulao",icon:"🍚",items:[
+  {n:"Chicken Biryani",p:149,t:"nv",tag:"Bestseller"},
+  {n:"Chicken Pulao",p:199,t:"nv"},
+  {n:"Chicken Gongura Pulao",p:219,t:"nv"},
+  {n:"Veg Pulav",p:149,t:"v"},
+ ]},
+ {cat:"Rice Bowls",icon:"🥘",items:[
+  {n:"Meal Box (Rice · Curry · Curd)",p:100,t:"",tag:"Value"},
+  {n:"Pappu Annam with Papad & Curd",p:99,t:"v"},
+  {n:"Avakaya Annam with Papad",p:99,t:"v"},
+  {n:"Vellulli Ghee Karam Rice with Papad",p:99,t:"v"},
+  {n:"Sambar Rice with Papad",p:99,t:"v"},
+  {n:"Pulihora",p:99,t:"v"},
+  {n:"Curd Rice",p:99,t:"v"},
+  {n:"Tomato Rice",p:99,t:"v"},
+  {n:"Jeera Rice",p:99,t:"v"},
+  {n:"Pudina Rice",p:99,t:"v"},
+  {n:"Kothimeera Rice",p:99,t:"v"},
+  {n:"Pachi Pulusu Rice with Papad",p:99,t:"v"},
+  {n:"Egg Fried Rice",p:99,t:"e"},
+ ]},
+ {cat:"Chapati Combos",icon:"🫓",items:[
+  {n:"4 Chapati with Chicken Curry",p:179,t:"nv"},
+  {n:"4 Chapati with Aloo Fry & Pappu",p:149,t:"v"},
+  {n:"4 Chapati with Egg Bhurji",p:149,t:"e"},
+ ]},
+ {cat:"Tiffins",icon:"🍳",items:[
+  {n:"Poori with Besan",p:99,t:"v"},
+  {n:"Poori with Chicken Curry",p:149,t:"nv"},
+  {n:"Upma",p:59,t:"v"},
+  {n:"Upma with Chicken Curry",p:99,t:"nv"},
+  {n:"Pasta",p:99,t:"v"},
+ ]},
+ {cat:"Maggi & Pasta",icon:"🍜",items:[
+  {n:"Plain Maggi",p:49,t:"v"},
+  {n:"Masala Maggi",p:59,t:"v"},
+  {n:"Egg Maggi",p:69,t:"e"},
+  {n:"Pasta",p:99,t:"v"},
+ ]},
+ {cat:"Omelette",icon:"🥚",items:[
+  {n:"Plain Double Egg Omelette",p:69,t:"e"},
+  {n:"Veggie Double Egg Omelette",p:79,t:"e"},
+ ]},
+ {cat:"Juices & Shakes",icon:"🥤",items:[
+  {n:"ABC Juice",p:99,t:"v",tag:"Fresh"},
+  {n:"Carrot Juice",p:49,t:"v"},
+  {n:"Banana Shake",p:49,t:"v"},
+  {n:"Lemon Juice",p:49,t:"v"},
+  {n:"Pudina Juice",p:49,t:"v"},
+  {n:"Buttermilk",p:49,t:"v"},
+ ]},
+ {cat:"Healthy & Diet",icon:"🥗",items:[
+  {n:"Ragi Java",p:30,t:"v",tag:"Steal ₹30"},
+  {n:"Masala Oats with Veggies Omelette",p:119,t:"e"},
+  {n:"Masala Oats with Ragi & Veggies",p:99,t:"v",tag:"Healthy"},
+  {n:"Bread with Peanut Butter",p:99,t:"v"},
+  {n:"Boiled Eggs",p:99,t:"e"},
+  {n:"Fruit Bowl",p:49,t:"v",tag:"Light"},
+ ]},
+];
+
+const grid = document.getElementById('menu-list');
+const tabsEl = document.getElementById('menu-tabs');
+let cat = 'all', q = '';
+
+const dotFor = t => t === 'v' ? '<span class="dot v" title="Veg"></span>'
+  : t === 'nv' ? '<span class="dot nv" title="Non-veg"></span>'
+  : t === 'e' ? '<span class="dot e" title="Egg"></span>'
+  : '<span class="dot none"></span>';
+
+function render(){
+  const query = q.trim().toLowerCase();
+  const html = MENU.filter(c => cat === 'all' || c.cat === cat).map(c => {
+    const items = c.items.filter(it => !query || it.n.toLowerCase().includes(query));
+    if (!items.length) return '';
+    return `<div class="mcat">
+      <h3 class="mcat-h"><span>${c.icon}</span> ${c.cat} <em class="cnt">${items.length} items</em></h3>
+      <div class="mgrid">${items.map(it => `
+        <div class="mi">${dotFor(it.t)}
+          <div><b>${it.n}${it.tag ? `<span class="tag">${it.tag}</span>` : ''}</b></div>
+          <span class="leader"></span><span class="pr">₹${it.p}</span>
+        </div>`).join('')}
+      </div></div>`;
+  }).join('');
+  grid.innerHTML = html || `<div class="empty"><b>No dishes found for "${q}" 🍳</b>Try "chicken", "rice", "ragi", "juice" — or browse All.</div>`;
+}
+
+tabsEl.innerHTML = [{cat:'all',icon:'✨',label:'All'}].concat(MENU).map((t,i) =>
+  `<button class="tab ${i===0?'on':''}" data-cat="${t.cat}" role="tab">${t.icon} ${t.label}</button>`).join('');
+
+tabsEl.addEventListener('click', e => {
+  const b = e.target.closest('.tab'); if (!b) return;
+  cat = b.dataset.cat;
+  tabsEl.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === b));
+  render();
+});
+document.getElementById('q').addEventListener('input', e => { q = e.target.value; render(); });
+render();
+</script>
 </body>
 </html>
