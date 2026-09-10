@@ -522,7 +522,7 @@ footer a:hover{color:var(--goldsoft)}
     <div class="loc-grid">
       <div class="loc-card reveal">
         <span class="chip-loc" style="border-color:var(--line);background:#fdf3e0;color:#a5681a"><svg class="si"><use href="#i-pin"/></svg> Location Highlight</span>
-        <p class="big">We are located literally just behind <b>Kamineni Hospital</b> — within 3 KM of LB Nagar.</p>
+        <p class="big">We are located literally just behind <b>Kamineni Hospital</b>, Prashanth Nagar, Mansoorabad.</p>
         <div class="addr">
           <b>Jabilli Cloud Kitchen 📍</b><br>
           H No 3-8-497/2, Plot No 28, Road No 3,<br>
@@ -740,7 +740,7 @@ function render(){
 }
 
 tabsEl.innerHTML = [{cat:'all',icon:'✨',label:'All'}].concat(MENU).map((t,i) =>
-  `<button class="tab ${i===0?'on':''}" data-cat="${t.cat}" role="tab" aria-selected="${i===0?'true':'false'}" tabindex="${i===0?'0':'-1'}">${t.icon} ${t.label}</button>`).join('');
+  `<button class="tab ${i===0?'on':''}" data-cat="${t.cat}" role="tab" aria-selected="${i===0?'true':'false'}" tabindex="${i===0?'0':'-1'}">${t.icon} ${t.cat}</button>`).join('');
 
 tabsEl.addEventListener('click', e => {
   const b = e.target.closest('.tab'); if (!b) return;
