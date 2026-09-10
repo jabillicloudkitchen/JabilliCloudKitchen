@@ -18,8 +18,9 @@
   "name": "Jabilli Cloud Kitchen",
   "description": "Homely veg & non-veg food made with love. Free delivery within 3 KM of LB Nagar.",
   "telephone": "+917569355400",
-  "priceRange": "₹30 - ₹229",
+  "priceRange": "₹30-₹229",
   "servesCuisine": ["Indian", "Telangana", "South Indian", "Biryani"],
+  "openingHours": ["Mo-Su 11:00-22:00"],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "H No 3-8-497/2, Plot No 28, Road No 3, Prashanth Nagar, Mansoorabad, LB Nagar",
@@ -207,7 +208,7 @@ header.sc{background:rgba(38,6,9,.94);box-shadow:0 10px 30px -12px rgba(0,0,0,.5
 .dot.nv{background:#c22b2b;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #c22b2b}
 .dot.e{background:#e5a13a;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #e5a13a}
 .dot.none{background:transparent;box-shadow:none}
-.menu-tabs{display:flex;gap:10px;overflow-x:auto;padding:14px 2px 18px;position:sticky;top:66px;z-index:40;background:linear-gradient(var(--cream) 82%,transparent);scrollbar-width:none}
+.menu-tabs{display:flex;gap:10px;overflow-x:auto;padding:14px 2px 18px;position:sticky;top:68px;z-index:40;background:linear-gradient(var(--cream) 82%,transparent);scrollbar-width:none}
 .menu-tabs::-webkit-scrollbar{display:none}
 .tab{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:9px 18px;font-weight:600;font-size:.84rem;color:var(--inksoft);cursor:pointer;transition:.2s;font-family:inherit;white-space:nowrap}
 .tab:hover{border-color:var(--gold2);color:var(--ink)}
@@ -448,7 +449,7 @@ footer a:hover{color:var(--goldsoft)}
     </div>
 
     <div class="menu-toolbar reveal">
-      <label class="search"><svg class="si"><use href="#i-search"/></svg><input id="q" type="text" placeholder="Search the menu… try "chicken", "ragi", "juice"" aria-label="Search menu"></label>
+      <label class="search"><svg class="si"><use href="#i-search"/></svg><input id="q" type="text" placeholder="Search the menu… try chicken, ragi, juice" aria-label="Search menu"></label>
       <div class="legend">
         <span><i class="dot v"></i> Veg</span><span><i class="dot nv"></i> Non-Veg</span><span><i class="dot e"></i> Egg</span>
       </div>
@@ -617,7 +618,7 @@ addEventListener('scroll', () => hd.classList.toggle('sc', scrollY > 10), {passi
 const burger = document.getElementById('burger');
 burger.onclick = () => {
   const open = document.body.classList.toggle('nav-open');
-  burger.setAttribute('aria-expanded', open);
+  burger.setAttribute('aria-expanded', String(open));
 };
 document.querySelectorAll('.nav-links a').forEach(a =>
   a.addEventListener('click', () => document.body.classList.remove('nav-open')));
@@ -714,6 +715,8 @@ const grid = document.getElementById('menu-list');
 const tabsEl = document.getElementById('menu-tabs');
 let cat = 'all', q = '';
 
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
 const dotFor = t => t === 'v' ? '<span class="dot v" title="Veg"></span>'
   : t === 'nv' ? '<span class="dot nv" title="Non-veg"></span>'
   : t === 'e' ? '<span class="dot e" title="Egg"></span>'
@@ -733,16 +736,21 @@ function render(){
         </div>`).join('')}
       </div></div>`;
   }).join('');
-  grid.innerHTML = html || `<div class="empty"><b>No dishes found for "${q}" 🍳</b>Try "chicken", "rice", "ragi", "juice" — or browse All.</div>`;
+  grid.innerHTML = html || `<div class="empty"><b>No dishes found for "${esc(q)}" 🍳</b>Try "chicken", "rice", "ragi", "juice" — or browse All.</div>`;
 }
 
 tabsEl.innerHTML = [{cat:'all',icon:'✨',label:'All'}].concat(MENU).map((t,i) =>
-  `<button class="tab ${i===0?'on':''}" data-cat="${t.cat}" role="tab">${t.icon} ${t.label}</button>`).join('');
+  `<button class="tab ${i===0?'on':''}" data-cat="${t.cat}" role="tab" aria-selected="${i===0?'true':'false'}" tabindex="${i===0?'0':'-1'}">${t.icon} ${t.label}</button>`).join('');
 
 tabsEl.addEventListener('click', e => {
   const b = e.target.closest('.tab'); if (!b) return;
   cat = b.dataset.cat;
-  tabsEl.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === b));
+  tabsEl.querySelectorAll('.tab').forEach(x => {
+    const active = x === b;
+    x.classList.toggle('on', active);
+    x.setAttribute('aria-selected', String(active));
+    x.setAttribute('tabindex', active ? '0' : '-1');
+  });
   render();
 });
 document.getElementById('q').addEventListener('input', e => { q = e.target.value; render(); });
