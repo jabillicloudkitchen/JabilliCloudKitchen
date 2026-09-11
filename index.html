@@ -45,7 +45,7 @@ html{scroll-behavior:smooth}
   --gold:#e9b45b; --gold2:#c9922f; --goldsoft:#f3d193;
   --cream:#fff6e9; --ink:#2b1512; --inksoft:#6f5a49; --line:#ecd9b8;
   --shadow:0 18px 40px -18px rgba(74,13,19,.35);
-  --swiggy:#fc8019; --zomato:#e23744;
+  --swiggy:#fc8019; --zomato:#e23744; --green:#00b894;
 }
 body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 section{scroll-margin-top:78px}
@@ -305,6 +305,7 @@ footer a:hover{color:var(--goldsoft)}
 .toggle-3d .switch::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;background:var(--goldsoft);border-radius:50%;transition:.3s}
 .toggle-3d.on .switch{background:rgba(0,184,148,.4)}
 .toggle-3d.on .switch::after{left:18px;background:var(--green)}
+@media(max-width:500px){.toggle-3d{right:12px;bottom:140px;padding:6px 10px;font-size:.7rem}}
 
 /* 3D Mode */
 body.mode-3d{perspective:1200px}
