@@ -298,6 +298,34 @@ footer a:hover{color:var(--goldsoft)}
 .fab-wa{background:#25d366}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(233,180,91,.55)}70%{box-shadow:0 0 0 18px rgba(233,180,91,0)}100%{box-shadow:0 0 0 0 rgba(233,180,91,0)}}
 
+/* 3D Effects Toggle */
+.toggle-3d{position:fixed;right:18px;bottom:90px;z-index:91;display:flex;align-items:center;gap:8px;background:rgba(38,6,9,.9);backdrop-filter:blur(8px);border:1px solid rgba(233,180,91,.3);border-radius:999px;padding:8px 14px;cursor:pointer;transition:.3s;font-size:.75rem;color:var(--goldsoft);font-weight:600;font-family:inherit}
+.toggle-3d:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(233,180,91,.3)}
+.toggle-3d .switch{width:36px;height:20px;background:rgba(255,255,255,.15);border-radius:10px;position:relative;transition:.3s}
+.toggle-3d .switch::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;background:var(--goldsoft);border-radius:50%;transition:.3s}
+.toggle-3d.on .switch{background:rgba(0,184,148,.4)}
+.toggle-3d.on .switch::after{left:18px;background:var(--green)}
+
+/* 3D Mode */
+body.mode-3d{perspective:1200px}
+body.mode-3d .hero-art{transform:rotateY(-8deg) rotateX(4deg);transition:transform .6s ease;transform-style:preserve-3d}
+body.mode-3d .hero-art:hover{transform:rotateY(0) rotateX(0)}
+body.mode-3d .sp-card{transform:perspective(800px) rotateY(-5deg);transition:transform .4s ease,box-shadow .4s ease}
+body.mode-3d .sp-card:hover{transform:perspective(800px) rotateY(0) translateY(-8px)}
+body.mode-3d .why{transform:perspective(800px) rotateX(3deg);transition:transform .4s ease}
+body.mode-3d .why:hover{transform:perspective(800px) rotateX(0) translateY(-6px)}
+body.mode-3d .pk{transform:perspective(800px) rotateY(3deg);transition:transform .4s ease}
+body.mode-3d .pk:hover{transform:perspective(800px) rotateY(0) translateY(-8px)}
+body.mode-3d .sv{transform:perspective(800px) rotateX(-3deg);transition:transform .4s ease}
+body.mode-3d .sv:hover{transform:perspective(800px) rotateX(0) translateY(-5px)}
+body.mode-3d .loc-card{transform:perspective(800px) rotateY(-4deg);transition:transform .4s ease}
+body.mode-3d .loc-card:hover{transform:perspective(800px) rotateY(0)}
+body.mode-3d .plate-wrap{animation:plate3d 6s ease-in-out infinite}
+@keyframes plate3d{0%,100%{transform:rotateY(0) rotateX(5deg)}50%{transform:rotateY(15deg) rotateX(-5deg)}}
+body.mode-3d .hero h1{text-shadow:2px 2px 4px rgba(0,0,0,.3),4px 4px 8px rgba(0,0,0,.2)}
+body.mode-3d .ochip{box-shadow:0 20px 40px -15px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)}
+body.mode-3d .section{transform-style:preserve-3d}
+
 @media (prefers-reduced-motion:reduce){
  *,*::before,*::after{animation:none!important;transition:none!important}
  html{scroll-behavior:auto}
@@ -606,6 +634,11 @@ footer a:hover{color:var(--goldsoft)}
   </div>
 </footer>
 
+<button class="toggle-3d" id="toggle3d" onclick="toggle3D()">
+  <span class="switch"></span>
+  <span>3D Effects</span>
+</button>
+
 <div class="fab">
   <a class="fab-wa" target="_blank" rel="noopener" aria-label="Order on WhatsApp" href="https://wa.me/917569355400?text=Hi%20Jabilli!%20I%20would%20like%20to%20place%20an%20order."><svg class="sfill"><use href="#i-wa"/></svg></a>
   <a class="fab-call" aria-label="Call to order" href="tel:+917569355400"><svg class="si"><use href="#i-phone"/></svg></a>
@@ -627,6 +660,19 @@ const io = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
 }), {threshold:.12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// 3D Effects Toggle
+const toggle3dBtn = document.getElementById('toggle3d');
+const saved3D = localStorage.getItem('jabilli-3d');
+if (saved3D === 'on') {
+  document.body.classList.add('mode-3d');
+  toggle3dBtn.classList.add('on');
+}
+function toggle3D() {
+  const isOn = document.body.classList.toggle('mode-3d');
+  toggle3dBtn.classList.toggle('on', isOn);
+  localStorage.setItem('jabilli-3d', isOn ? 'on' : 'off');
+}
 
 const spRow = document.getElementById('spRow');
 document.getElementById('spL').onclick = () => spRow.scrollBy({left:-260, behavior:'smooth'});
