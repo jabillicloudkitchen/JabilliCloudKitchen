@@ -299,33 +299,67 @@ footer a:hover{color:var(--goldsoft)}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(233,180,91,.55)}70%{box-shadow:0 0 0 18px rgba(233,180,91,0)}100%{box-shadow:0 0 0 0 rgba(233,180,91,0)}}
 
 /* 3D Effects Toggle */
-.toggle-3d{position:fixed;right:18px;bottom:150px;z-index:91;display:flex;align-items:center;gap:8px;background:rgba(38,6,9,.9);backdrop-filter:blur(8px);border:1px solid rgba(233,180,91,.3);border-radius:999px;padding:8px 14px;cursor:pointer;transition:.3s;font-size:.75rem;color:var(--goldsoft);font-weight:600;font-family:inherit}
-.toggle-3d:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(233,180,91,.3)}
-.toggle-3d .switch{width:36px;height:20px;background:rgba(255,255,255,.15);border-radius:10px;position:relative;transition:.3s}
-.toggle-3d .switch::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;background:var(--goldsoft);border-radius:50%;transition:.3s}
-.toggle-3d.on .switch{background:rgba(0,184,148,.4)}
-.toggle-3d.on .switch::after{left:18px;background:var(--green)}
-@media(max-width:500px){.toggle-3d{right:12px;bottom:200px;padding:6px 10px;font-size:.7rem}}
+.toggle-3d{position:fixed;right:18px;bottom:150px;z-index:91;display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(38,6,9,.95),rgba(74,13,19,.9));backdrop-filter:blur(12px);border:1.5px solid rgba(233,180,91,.4);border-radius:999px;padding:10px 16px;cursor:pointer;transition:.4s;font-size:.75rem;color:var(--goldsoft);font-weight:700;font-family:inherit;letter-spacing:.03em;box-shadow:0 8px 24px -8px rgba(0,0,0,.4),0 0 20px rgba(233,180,91,.08)}
+.toggle-3d:hover{border-color:var(--gold);box-shadow:0 12px 32px -8px rgba(0,0,0,.5),0 0 30px rgba(233,180,91,.15);transform:translateY(-2px)}
+.toggle-3d .switch{width:40px;height:22px;background:rgba(255,255,255,.12);border-radius:11px;position:relative;transition:.4s;border:1px solid rgba(255,255,255,.08)}
+.toggle-3d .switch::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;background:linear-gradient(135deg,var(--goldsoft),var(--gold));border-radius:50%;transition:.4s;box-shadow:0 2px 8px rgba(233,180,91,.4)}
+.toggle-3d.on .switch{background:linear-gradient(135deg,rgba(0,184,148,.4),rgba(0,206,209,.3));border-color:rgba(0,184,148,.3)}
+.toggle-3d.on .switch::after{left:20px;background:linear-gradient(135deg,var(--green),#00cec9);box-shadow:0 2px 12px rgba(0,184,148,.5)}
+.toggle-3d.on{border-color:rgba(0,184,148,.4);box-shadow:0 8px 24px -8px rgba(0,0,0,.4),0 0 25px rgba(0,184,148,.12)}
+@media(max-width:500px){.toggle-3d{right:12px;bottom:200px;padding:8px 12px;font-size:.7rem}}
 
-/* 3D Mode */
-body.mode-3d{perspective:1200px}
-body.mode-3d .hero-art{transform:rotateY(-8deg) rotateX(4deg);transition:transform .6s ease;transform-style:preserve-3d}
-body.mode-3d .hero-art:hover{transform:rotateY(0) rotateX(0)}
-body.mode-3d .sp-card{transform:perspective(800px) rotateY(-5deg);transition:transform .4s ease,box-shadow .4s ease}
-body.mode-3d .sp-card:hover{transform:perspective(800px) rotateY(0) translateY(-8px)}
-body.mode-3d .why{transform:perspective(800px) rotateX(3deg);transition:transform .4s ease}
-body.mode-3d .why:hover{transform:perspective(800px) rotateX(0) translateY(-6px)}
-body.mode-3d .pk{transform:perspective(800px) rotateY(3deg);transition:transform .4s ease}
-body.mode-3d .pk:hover{transform:perspective(800px) rotateY(0) translateY(-8px)}
-body.mode-3d .sv{transform:perspective(800px) rotateX(-3deg);transition:transform .4s ease}
-body.mode-3d .sv:hover{transform:perspective(800px) rotateX(0) translateY(-5px)}
-body.mode-3d .loc-card{transform:perspective(800px) rotateY(-4deg);transition:transform .4s ease}
-body.mode-3d .loc-card:hover{transform:perspective(800px) rotateY(0)}
-body.mode-3d .plate-wrap{animation:plate3d 6s ease-in-out infinite}
-@keyframes plate3d{0%,100%{transform:rotateY(0) rotateX(5deg)}50%{transform:rotateY(15deg) rotateX(-5deg)}}
-body.mode-3d .hero h1{text-shadow:2px 2px 4px rgba(0,0,0,.3),4px 4px 8px rgba(0,0,0,.2)}
-body.mode-3d .ochip{box-shadow:0 20px 40px -15px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)}
+/* 3D Mode — Hi-Fi Effects */
+body.mode-3d{perspective:1800px;perspective-origin:50% 40%}
+body.mode-3d .hero-art{transform:rotateY(-12deg) rotateX(6deg) translateZ(30px);transition:transform .8s cubic-bezier(.25,.46,.45,.94);transform-style:preserve-3d}
+body.mode-3d .hero-art:hover{transform:rotateY(0) rotateX(0) translateZ(0)}
+body.mode-3d .plate-wrap{animation:plate3dHiFi 8s ease-in-out infinite;transform-style:preserve-3d}
+@keyframes plate3dHiFi{0%,100%{transform:rotateY(0) rotateX(8deg) translateZ(20px)}25%{transform:rotateY(12deg) rotateX(-4deg) translateZ(40px)}50%{transform:rotateY(20deg) rotateX(-8deg) translateZ(20px)}75%{transform:rotateY(8deg) rotateX(4deg) translateZ(30px)}}
+body.mode-3d .plate{box-shadow:inset 0 -14px 30px rgba(120,70,10,.25),0 40px 80px -20px rgba(0,0,0,.6),0 0 60px rgba(233,180,91,.15)}
+body.mode-3d .ring{border-color:rgba(233,180,91,.6);box-shadow:0 0 30px rgba(233,180,91,.1)}
+body.mode-3d .sp-card{transform:perspective(1000px) rotateY(-8deg) rotateX(3deg) translateZ(15px);transition:transform .5s cubic-bezier(.25,.46,.45,.94),box-shadow .5s ease;box-shadow:0 25px 50px -15px rgba(74,13,19,.5)}
+body.mode-3d .sp-card:nth-child(even){transform:perspective(1000px) rotateY(8deg) rotateX(-3deg) translateZ(15px)}
+body.mode-3d .sp-card:hover{transform:perspective(1000px) rotateY(0) rotateX(0) translateZ(40px) scale(1.05);box-shadow:0 35px 60px -15px rgba(74,13,19,.6),0 0 40px rgba(233,180,91,.12)}
+body.mode-3d .why{transform:perspective(1000px) rotateX(5deg) rotateY(-2deg) translateZ(10px);transition:transform .5s cubic-bezier(.25,.46,.45,.94),box-shadow .5s ease;box-shadow:0 20px 40px -18px rgba(74,13,19,.4)}
+body.mode-3d .why:nth-child(2){transform:perspective(1000px) rotateX(-3deg) rotateY(4deg) translateZ(15px)}
+body.mode-3d .why:nth-child(3){transform:perspective(1000px) rotateX(4deg) rotateY(-3deg) translateZ(12px)}
+body.mode-3d .why:nth-child(4){transform:perspective(1000px) rotateX(-4deg) rotateY(2deg) translateZ(18px)}
+body.mode-3d .why:hover{transform:perspective(1000px) rotateX(0) rotateY(0) translateZ(30px) scale(1.03);box-shadow:0 30px 50px -15px rgba(74,13,19,.5),0 0 30px rgba(233,180,91,.1)}
+body.mode-3d .pk{transform:perspective(1000px) rotateY(6deg) rotateX(-3deg) translateZ(12px);transition:transform .5s cubic-bezier(.25,.46,.45,.94),box-shadow .5s ease}
+body.mode-3d .pk:nth-child(2){transform:perspective(1000px) rotateY(-4deg) rotateX(3deg) translateZ(18px)}
+body.mode-3d .pk:nth-child(3){transform:perspective(1000px) rotateY(3deg) rotateX(-5deg) translateZ(22px)}
+body.mode-3d .pk:hover{transform:perspective(1000px) rotateY(0) rotateX(0) translateZ(35px) scale(1.04);box-shadow:0 35px 60px -20px rgba(74,13,19,.5),0 0 35px rgba(233,180,91,.1)}
+body.mode-3d .pk.hot{box-shadow:0 30px 60px -26px rgba(163,105,26,.6),0 0 50px rgba(233,180,91,.08)}
+body.mode-3d .pk.hot:hover{box-shadow:0 40px 70px -26px rgba(163,105,26,.7),0 0 60px rgba(233,180,91,.15)}
+body.mode-3d .sv{transform:perspective(1000px) rotateX(-5deg) rotateY(2deg) translateZ(10px);transition:transform .5s cubic-bezier(.25,.46,.45,.94),box-shadow .5s ease}
+body.mode-3d .sv:nth-child(2){transform:perspective(1000px) rotateX(3deg) rotateY(-4deg) translateZ(14px)}
+body.mode-3d .sv:nth-child(3){transform:perspective(1000px) rotateX(-4deg) rotateY(3deg) translateZ(16px)}
+body.mode-3d .sv:nth-child(4){transform:perspective(1000px) rotateX(5deg) rotateY(-2deg) translateZ(12px)}
+body.mode-3d .sv:hover{transform:perspective(1000px) rotateX(0) rotateY(0) translateZ(28px) scale(1.04);box-shadow:0 25px 45px -12px rgba(233,180,91,.2),0 0 30px rgba(233,180,91,.08)}
+body.mode-3d .loc-card{transform:perspective(1000px) rotateY(-6deg) rotateX(3deg) translateZ(15px);transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+body.mode-3d .loc-card:hover{transform:perspective(1000px) rotateY(0) rotateX(0) translateZ(30px)}
+body.mode-3d .hero h1{text-shadow:2px 2px 4px rgba(0,0,0,.3),4px 4px 8px rgba(0,0,0,.2),0 0 40px rgba(233,180,91,.15)}
+body.mode-3d .ochip{box-shadow:0 25px 50px -15px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.15),0 0 25px rgba(233,180,91,.08);transform:translateZ(20px)}
+body.mode-3d .ochip:hover{transform:translateZ(40px) scale(1.08)}
 body.mode-3d .section{transform-style:preserve-3d}
+body.mode-3d .mcat{transform:perspective(1000px) rotateX(1deg);transition:transform .4s ease}
+body.mode-3d .mcat:hover{transform:perspective(1000px) rotateX(0) translateY(-4px)}
+body.mode-3d .mi{transition:transform .3s ease,box-shadow .3s ease}
+body.mode-3d .mi:hover{transform:perspective(800px) translateZ(8px) scale(1.02);box-shadow:0 12px 28px -14px rgba(74,13,19,.4)}
+body.mode-3d .menu-tabs{transform:perspective(1000px) rotateX(2deg);transition:transform .4s ease}
+body.mode-3d .also{transform:perspective(1000px) rotateX(-2deg) translateZ(10px);transition:transform .4s ease}
+body.mode-3d .also:hover{transform:perspective(1000px) rotateX(0) translateZ(20px)}
+body.mode-3d .map-wrap{transform:perspective(1000px) rotateY(4deg) translateZ(10px);transition:transform .5s ease}
+body.mode-3d .map-wrap:hover{transform:perspective(1000px) rotateY(0) translateZ(25px)}
+body.mode-3d .step{transform:perspective(800px) rotateY(-3deg) translateZ(8px);transition:transform .4s ease}
+body.mode-3d .step:nth-child(2){transform:perspective(800px) rotateY(2deg) translateZ(12px)}
+body.mode-3d .step:nth-child(3){transform:perspective(800px) rotateY(-2deg) translateZ(10px)}
+body.mode-3d .step:hover{transform:perspective(800px) rotateY(0) translateZ(20px) scale(1.03)}
+body.mode-3d .app-chip{transition:transform .3s ease,box-shadow .3s ease}
+body.mode-3d .app-chip:hover{transform:translateZ(15px) scale(1.06)}
+body.mode-3d .f-grid>div{transform:perspective(800px) rotateX(1deg);transition:transform .4s ease}
+body.mode-3d .ticker{transform:perspective(1200px) rotateX(-1deg);box-shadow:0 8px 24px -8px rgba(0,0,0,.3)}
+body.mode-3d .brand-badge{animation:badge3d 4s ease-in-out infinite}
+@keyframes badge3d{0%,100%{transform:rotateY(0) scale(1)}50%{transform:rotateY(15deg) scale(1.05)}}
 
 @media (prefers-reduced-motion:reduce){
  *,*::before,*::after{animation:none!important;transition:none!important}
@@ -674,6 +708,24 @@ function toggle3D() {
   toggle3dBtn.classList.toggle('on', isOn);
   localStorage.setItem('jabilli-3d', isOn ? 'on' : 'off');
 }
+
+// 3D Mouse Parallax — hero section follows cursor
+(function(){
+  const heroArt = document.querySelector('.hero-art');
+  const hero = document.querySelector('.hero');
+  if(!heroArt || !hero) return;
+  hero.addEventListener('mousemove', e => {
+    if(!document.body.classList.contains('mode-3d')) return;
+    const rect = hero.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    heroArt.style.transform = `rotateY(${x * 20}deg) rotateY(${x * 20}deg) rotateX(${-y * 12}deg) translateZ(30px)`;
+  });
+  hero.addEventListener('mouseleave', () => {
+    if(!document.body.classList.contains('mode-3d')) return;
+    heroArt.style.transform = 'rotateY(-12deg) rotateX(6deg) translateZ(30px)';
+  });
+})();
 
 const spRow = document.getElementById('spRow');
 document.getElementById('spL').onclick = () => spRow.scrollBy({left:-260, behavior:'smooth'});
