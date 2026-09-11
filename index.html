@@ -786,8 +786,8 @@ function render(){
   grid.innerHTML = html || `<div class="empty"><b>No dishes found for "${esc(q)}" 🍳</b>Try "chicken", "rice", "ragi", "juice" — or browse All.</div>`;
 }
 
-tabsEl.innerHTML = [{cat:'all',icon:'✨',label:'All'}].concat(MENU).map((t,i) =>
-  `<button class="tab ${i===0?'on':''}" data-cat="${t.cat}" role="tab" aria-selected="${i===0?'true':'false'}" tabindex="${i===0?'0':'-1'}">${t.icon} ${t.label || t.cat}</button>`).join('');
+tabsEl.innerHTML = [{cat:'all',icon:'✨'}].concat(MENU).map((t,i) =>
+  `<button class="tab ${i===0?'on':''}" data-cat="${t.cat}" role="tab" aria-selected="${i===0?'true':'false'}" tabindex="${i===0?'0':'-1'}">${t.icon} ${t.cat}</button>`).join('');
 
 tabsEl.addEventListener('click', e => {
   const b = e.target.closest('.tab'); if (!b) return;
